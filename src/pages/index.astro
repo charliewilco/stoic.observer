@@ -1,0 +1,34 @@
+---
+import MeditationsSearch from "../components/MeditationsSearch";
+import Base from "../layouts/Base.astro";
+import { authorPages, authorWorks } from "../lib/works";
+---
+
+<Base
+	title="Stoic Reader"
+	description="Read and search public-domain translations of practical Stoic texts."
+>
+	<h1>Stoic Reader</h1>
+	<p>
+		Read and search public-domain translations of Marcus Aurelius, Epictetus, Seneca, Musonius
+		Rufus, and Hierocles.
+	</p>
+
+	<MeditationsSearch client:load />
+
+	<nav aria-label="Works by author" class="book-list">
+		<h2>Works</h2>
+		{
+			authorPages.map((author) => (
+				<section aria-labelledby={`${author.slug}-works`}>
+					<h3 id={`${author.slug}-works`}><a href={`/${author.slug}/`}>{author.name}</a></h3>
+					<ul>
+						{authorWorks(author.slug).map((work) => (
+							<li><a href={work.href}>{work.title}</a></li>
+						))}
+					</ul>
+				</section>
+			))
+		}
+	</nav>
+</Base>

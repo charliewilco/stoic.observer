@@ -1,0 +1,301 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import CanonPassage from "../components/CanonPassage.astro";
+import MeditationsSearch from "../components/MeditationsSearch";
+import Base from "../layouts/Base.astro";
+import {
+	bookPath,
+	flatNumber,
+	flatWorks,
+	multiBookWorks,
+	referenceLabel,
+	sectionPath,
+	sortEntries,
+	type CanonCollection,
+	type FlatWork,
+	type MultiBookWork,
+	type Work
+} from "../lib/works";
+
+type CanonEntry = CollectionEntry<CanonCollection>;
+
+type FlatIndexPage = {
+	pageType: "flat-index";
+	work: FlatWork;
+	entries: CanonEntry[];
+};
+
+type FlatEntryPage = {
+	pageType: "flat-entry";
+	work: FlatWork;
+	entry: CanonEntry;
+	previousEntry?: CanonEntry;
+	nextEntry?: CanonEntry;
+};
+
+type MultiIndexPage = {
+	pageType: "multi-index";
+	work: MultiBookWork;
+	entries: CanonEntry[];
+	books: number[];
+};
+
+type MultiBookPage = {
+	pageType: "multi-book";
+	work: MultiBookWork;
+	book: number;
+	entries: CanonEntry[];
+};
+
+type MultiEntryPage = {
+	pageType: "multi-entry";
+	work: MultiBookWork;
+	entry: CanonEntry;
+	previousEntry?: CanonEntry;
+	nextEntry?: CanonEntry;
+};
+
+type PageProps = FlatIndexPage | FlatEntryPage | MultiIndexPage | MultiBookPage | MultiEntryPage;
+
+export async function getStaticPaths() {
+	const paths: Array<{ params: { canon: string }; props: PageProps }> = [];
+
+	for (const work of flatWorks) {
+		let rawEntries: CanonEntry[] = [];
+		try {
+			rawEntries = await getCollection(work.collection);
+		} catch {
+			rawEntries = [];
+		}
+		const entries = sortEntries(work, rawEntries);
+
+		paths.push({
+			params: { canon: work.slug },
+			props: { pageType: "flat-index", work, entries }
+		});
+
+		for (const [index, entry] of entries.entries()) {
+			paths.push({
+				params: { canon: `${work.slug}/${flatNumber(entry.data)}` },
+				props: {
+					pageType: "flat-entry",
+					work,
+					entry,
+					previousEntry: entries[index - 1],
+					nextEntry: entries[index + 1]
+				}
+			});
+		}
+	}
+
+	for (const work of multiBookWorks) {
+		let rawEntries: CanonEntry[] = [];
+		try {
+			rawEntries = await getCollection(work.collection);
+		} catch {
+			rawEntries = [];
+		}
+		const entries = sortEntries(work, rawEntries);
+		const books = [...new Set(entries.map((entry) => entry.data.book))].sort((a, b) => a - b);
+		const generatedBooks = books.length > 0 ? books : Array.from({ length: work.bookCount }, (_, index) => index + 1);
+
+		paths.push({
+			params: { canon: work.slug },
+			props: { pageType: "multi-index", work, entries, books: generatedBooks }
+		});
+
+		for (const book of generatedBooks) {
+			paths.push({
+				params: { canon: `${work.slug}/book-${book}` },
+				props: {
+					pageType: "multi-book",
+					work,
+					book,
+					entries: entries.filter((entry) => entry.data.book === book)
+				}
+			});
+		}
+
+		for (const [index, entry] of entries.entries()) {
+			paths.push({
+				params: { canon: `${work.slug}/book-${entry.data.book}/${entry.data.chapter}` },
+				props: {
+					pageType: "multi-entry",
+					work,
+					entry,
+					previousEntry: entries[index - 1],
+					nextEntry: entries[index + 1]
+				}
+			});
+		}
+	}
+
+	return paths;
+}
+
+const page = Astro.props as PageProps;
+const title = pageTitle(page);
+const description = pageDescription(page);
+
+function pageTitle(page: PageProps): string {
+	if (page.pageType === "flat-entry" || page.pageType === "multi-entry") {
+		return `${page.work.title} ${referenceLabel(page.work, page.entry.data)} | Stoic Reader`;
+	}
+
+	if (page.pageType === "multi-book") {
+		return `${page.work.title} Book ${page.book} | Stoic Reader`;
+	}
+
+	return `${page.work.title} | Stoic Reader`;
+}
+
+function pageDescription(page: PageProps): string {
+	return `Read ${page.work.title} by ${page.work.author}.`;
+}
+
+function chapterTitle(work: Work, entry: CanonEntry): string {
+	const title = "title" in entry.data ? entry.data.title : undefined;
+	const reference = referenceLabel(work, entry.data);
+	return title ? `${reference}: ${title}` : reference;
+}
+---
+
+<Base title={title} description={description}>
+	<MeditationsSearch slot="header-search" client:visible />
+
+	{
+		page.pageType === "flat-index" && (
+			<>
+				<h1>{page.work.title}</h1>
+				<p>{page.work.author}</p>
+				<nav aria-label={`${page.work.title} ${page.work.itemPlural}`}>
+					<h2>{page.work.itemPlural}</h2>
+					{page.entries.length > 0 ? (
+						<ol>
+							{page.entries.map((entry) => (
+								<li>
+									<a href={sectionPath(page.work, entry)}>{chapterTitle(page.work, entry)}</a>
+								</li>
+							))}
+						</ol>
+					) : (
+						<p>Content has not been parsed yet.</p>
+					)}
+				</nav>
+			</>
+		)
+	}
+
+	{
+		page.pageType === "flat-entry" && (
+			<>
+				<article>
+					<CanonPassage
+						entry={page.entry}
+						work={page.work}
+						headingLevel="h1"
+						headingText={`${page.work.title} ${referenceLabel(page.work, page.entry.data)}`}
+					/>
+				</article>
+				<nav aria-label={`${page.work.itemLabel} navigation`} class="pagination">
+					{page.previousEntry ? (
+						<a href={sectionPath(page.work, page.previousEntry)}>
+							Previous: {referenceLabel(page.work, page.previousEntry.data)}
+						</a>
+					) : (
+						<span />
+					)}
+					<a href={`/${page.work.slug}/`}>Back to {page.work.title}</a>
+					{page.nextEntry ? (
+						<a href={sectionPath(page.work, page.nextEntry)}>
+							Next: {referenceLabel(page.work, page.nextEntry.data)}
+						</a>
+					) : (
+						<span />
+					)}
+				</nav>
+			</>
+		)
+	}
+
+	{
+		page.pageType === "multi-index" && (
+			<>
+				<h1>{page.work.title}</h1>
+				<p>{page.work.author}</p>
+				<nav aria-label={`${page.work.title} books`}>
+					<h2>Books</h2>
+					<ol>
+						{page.books.map((book) => (
+							<li>
+								<a href={bookPath(page.work, book)}>Book {book}</a>
+							</li>
+						))}
+					</ol>
+				</nav>
+			</>
+		)
+	}
+
+	{
+		page.pageType === "multi-book" && (
+			<>
+				<article data-pagefind-ignore="all">
+					<h1>{page.work.title} · Book {page.book}</h1>
+					{page.entries.length > 0 ? (
+						page.entries.map((entry) => (
+							<CanonPassage entry={entry} work={page.work} headingLevel="h2" />
+						))
+					) : (
+						<p>Content has not been parsed yet.</p>
+					)}
+				</article>
+				<nav aria-label="Book navigation" class="pagination">
+					{page.book > 1 ? (
+						<a href={bookPath(page.work, page.book - 1)}>Previous: Book {page.book - 1}</a>
+					) : (
+						<span />
+					)}
+					<a href={`/${page.work.slug}/`}>Back to {page.work.title}</a>
+					{page.book < page.work.bookCount ? (
+						<a href={bookPath(page.work, page.book + 1)}>Next: Book {page.book + 1}</a>
+					) : (
+						<span />
+					)}
+				</nav>
+			</>
+		)
+	}
+
+	{
+		page.pageType === "multi-entry" && (
+			<>
+				<article>
+					<CanonPassage
+						entry={page.entry}
+						work={page.work}
+						headingLevel="h1"
+						headingText={`${page.work.title} ${referenceLabel(page.work, page.entry.data)}`}
+					/>
+				</article>
+				<nav aria-label={`${page.work.itemLabel} navigation`} class="pagination">
+					{page.previousEntry ? (
+						<a href={sectionPath(page.work, page.previousEntry)}>
+							Previous: {referenceLabel(page.work, page.previousEntry.data)}
+						</a>
+					) : (
+						<span />
+					)}
+					<a href={bookPath(page.work, page.entry.data.book)}>Back to Book {page.entry.data.book}</a>
+					{page.nextEntry ? (
+						<a href={sectionPath(page.work, page.nextEntry)}>
+							Next: {referenceLabel(page.work, page.nextEntry.data)}
+						</a>
+					) : (
+						<span />
+					)}
+				</nav>
+			</>
+		)
+	}
+</Base>

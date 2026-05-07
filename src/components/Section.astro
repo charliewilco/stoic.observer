@@ -1,0 +1,25 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+
+interface Props {
+	entry: CollectionEntry<"meditations">;
+	headingLevel: "h1" | "h2";
+	headingText?: string;
+}
+
+const { entry, headingLevel, headingText = String(entry.data.section) } = Astro.props;
+const { Content } = await render(entry);
+const headingId = `section-${entry.data.section}`;
+const Heading = headingLevel;
+---
+
+<section
+	aria-labelledby={headingId}
+	data-pagefind-body
+	data-pagefind-meta={`author:Marcus Aurelius, work:Meditations, reference:Book ${entry.data.book} · Section ${entry.data.section}, book:${entry.data.book}, section:${entry.data.section}`}
+>
+	<Heading id={headingId} class="section-heading">{headingText}</Heading>
+	<div class="section-text">
+		<Content />
+	</div>
+</section>

@@ -1,0 +1,47 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import MeditationsSearch from "../../components/MeditationsSearch";
+import Section from "../../components/Section.astro";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+	const entries = await getCollection("meditations");
+	const books = [...new Set(entries.map((entry) => entry.data.book))].sort((a, b) => a - b);
+
+	return books.map((book) => ({
+		params: { book: String(book) },
+		props: {
+			book,
+			sections: entries
+				.filter((entry) => entry.data.book === book)
+				.sort((a, b) => a.data.section - b.data.section)
+		}
+	}));
+}
+
+interface Props {
+	book: number;
+	sections: CollectionEntry<"meditations">[];
+}
+
+const { book, sections } = Astro.props;
+const previousBook = book > 1 ? book - 1 : undefined;
+const nextBook = book < 12 ? book + 1 : undefined;
+---
+
+<Base
+	title={`Book ${book} | Meditations Reader`}
+	description={`Read Book ${book} of Marcus Aurelius' Meditations.`}
+>
+	<MeditationsSearch slot="header-search" client:visible />
+
+	<article data-pagefind-ignore="all">
+		<h1>Book {book}</h1>
+		{sections.map((entry) => <Section entry={entry} headingLevel="h2" />)}
+	</article>
+
+	<nav aria-label="Book navigation" class="pagination">
+		{previousBook ? <a href={`/book/${previousBook}/`}>Previous: Book {previousBook}</a> : <span />}
+		{nextBook ? <a href={`/book/${nextBook}/`}>Next: Book {nextBook}</a> : <span />}
+	</nav>
+</Base>

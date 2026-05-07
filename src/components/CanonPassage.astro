@@ -1,0 +1,34 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import type { CanonCollection, Work } from "../lib/works";
+import { flatNumber, referenceLabel } from "../lib/works";
+
+interface Props {
+	entry: CollectionEntry<CanonCollection>;
+	work: Work;
+	headingLevel: "h1" | "h2";
+	headingText?: string;
+}
+
+const { entry, work, headingLevel } = Astro.props;
+const reference = referenceLabel(work, entry.data);
+const title = "title" in entry.data ? entry.data.title : undefined;
+const headingText = Astro.props.headingText ?? (title ? `${reference}: ${title}` : reference);
+const headingId =
+	work.kind === "flat"
+		? `${work.collection}-${flatNumber(entry.data)}`
+		: `${work.collection}-book-${entry.data.book}-${entry.data.chapter}`;
+const { Content } = await render(entry);
+const Heading = headingLevel;
+---
+
+<section
+	aria-labelledby={headingId}
+	data-pagefind-body
+	data-pagefind-meta={`author:${work.author}, work:${work.title}, reference:${reference}`}
+>
+	<Heading id={headingId} class="section-heading">{headingText}</Heading>
+	<div class="section-text">
+		<Content />
+	</div>
+</section>

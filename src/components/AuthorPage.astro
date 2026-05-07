@@ -1,0 +1,32 @@
+---
+import Base from "../layouts/Base.astro";
+import { authorPages, authorWorks, type AuthorSlug } from "../lib/works";
+
+interface Props {
+	author: AuthorSlug;
+}
+
+const page = authorPages.find((candidate) => candidate.slug === Astro.props.author);
+
+if (!page) {
+	throw new Error(`Unknown author: ${Astro.props.author}`);
+}
+
+const works = authorWorks(page.slug);
+---
+
+<Base title={`${page.name} | Stoic Reader`} description={`Works by ${page.name} in the Stoic Reader.`}>
+	<h1>{page.name}</h1>
+	<p>{page.lede}</p>
+
+	<nav aria-label={`${page.name} works`}>
+		<h2>Works</h2>
+		{works.length > 0 ? (
+			<ul>
+				{works.map((work) => <li><a href={work.href}>{work.title}</a></li>)}
+			</ul>
+		) : (
+			<p>No works are available yet.</p>
+		)}
+	</nav>
+</Base>

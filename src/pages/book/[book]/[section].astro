@@ -1,0 +1,80 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import MeditationsSearch from "../../../components/MeditationsSearch";
+import Section from "../../../components/Section.astro";
+import Base from "../../../layouts/Base.astro";
+
+type SectionLink = {
+	book: number;
+	section: number;
+};
+
+export async function getStaticPaths() {
+	const entries = await getCollection("meditations");
+	const sorted = entries.sort((a, b) => a.data.book - b.data.book || a.data.section - b.data.section);
+
+	return sorted.map((entry, index) => ({
+		params: {
+			book: String(entry.data.book),
+			section: String(entry.data.section)
+		},
+		props: {
+			entry,
+			previousSection: sorted[index - 1]
+				? {
+					book: sorted[index - 1].data.book,
+					section: sorted[index - 1].data.section
+				}
+				: undefined,
+			nextSection: sorted[index + 1]
+				? {
+					book: sorted[index + 1].data.book,
+					section: sorted[index + 1].data.section
+				}
+				: undefined
+		}
+	}));
+}
+
+interface Props {
+	entry: CollectionEntry<"meditations">;
+	previousSection?: SectionLink;
+	nextSection?: SectionLink;
+}
+
+const { entry, previousSection, nextSection } = Astro.props;
+const { book, section } = entry.data;
+---
+
+<Base
+	title={`Book ${book} · Section ${section} | Meditations Reader`}
+	description={`Read Book ${book}, Section ${section} of Marcus Aurelius' Meditations.`}
+>
+	<MeditationsSearch slot="header-search" client:visible />
+
+	<article>
+		<Section entry={entry} headingLevel="h1" headingText={`Book ${book} · Section ${section}`} />
+	</article>
+
+	<nav aria-label="Section navigation" class="pagination">
+		{
+			previousSection
+				? (
+					<a href={`/book/${previousSection.book}/${previousSection.section}/`}>
+						Previous: Book {previousSection.book} · Section {previousSection.section}
+					</a>
+				)
+				: <span />
+		}
+		<a href={`/book/${book}/`}>Back to Book {book}</a>
+		{
+			nextSection
+				? (
+					<a href={`/book/${nextSection.book}/${nextSection.section}/`}>
+						Next: Book {nextSection.book} · Section {nextSection.section}
+					</a>
+				)
+				: <span />
+		}
+	</nav>
+</Base>

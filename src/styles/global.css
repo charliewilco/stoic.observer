@@ -1,0 +1,162 @@
+:root {
+	color-scheme: light dark;
+	--color-background: #f8f4ec;
+	--color-surface: #fffaf2;
+	--color-text: #211b17;
+	--color-muted: #665a50;
+	--color-border: #c8b9a8;
+	--color-focus: #7a4e0f;
+	--color-link-hover: #704700;
+	--color-link-underline: #9b7a53;
+	--color-mark: #f0d98c;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-background: #24211d;
+		--color-surface: #302c27;
+		--color-text: #f0e8dc;
+		--color-muted: #c6b9aa;
+		--color-border: #6f6256;
+		--color-focus: #f2c46f;
+		--color-link-hover: #ffd58a;
+		--color-link-underline: #cfaa73;
+		--color-mark: #7a5b16;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--color-background);
+	color: var(--color-text);
+	font-family: ui-serif, Georgia, serif;
+	font-size: 18px;
+	line-height: 1.7;
+}
+
+body {
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+a {
+	color: inherit;
+	text-decoration-color: var(--color-link-underline);
+	text-decoration-thickness: 0.08em;
+	text-underline-offset: 0.18em;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+}
+
+:focus-visible {
+	outline: 3px solid var(--color-focus);
+	outline-offset: 3px;
+}
+
+h1,
+h2 {
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: clamp(2rem, 2rem + 1vw, 3rem);
+	margin: 3rem 0 1rem;
+}
+
+h2 {
+	font-size: 1.1rem;
+}
+
+p {
+	margin: 0 0 1.2rem;
+}
+
+article {
+	margin-top: 2rem;
+}
+
+section {
+	margin: 2.5rem 0;
+}
+
+.section-heading {
+	color: var(--color-muted);
+	font-size: 0.95rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem;
+}
+
+@media (min-width: 760px) {
+	.section-heading {
+		margin-left: -2.4rem;
+		float: left;
+		width: 1.6rem;
+		text-align: right;
+	}
+}
+
+.section-text > :last-child {
+	margin-bottom: 0;
+}
+
+.skip-link {
+	position: absolute;
+	top: 0.75rem;
+	left: 0.75rem;
+	transform: translateY(-200%);
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	padding: 0.45rem 0.65rem;
+	z-index: 1;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+}
+
+.site-header {
+	display: grid;
+	gap: 1rem;
+	padding: 1rem 0 2rem;
+	border-bottom: 1px solid var(--color-border);
+}
+
+.site-header nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.site-footer {
+	color: var(--color-muted);
+	margin-top: 4rem;
+	padding: 2rem 0;
+	border-top: 1px solid var(--color-border);
+	font-size: 0.9rem;
+}
+
+.book-list {
+	margin-top: 3rem;
+}
+
+.book-list ol {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+	gap: 0.35rem 1rem;
+	padding-left: 1.4rem;
+}
+
+.pagination {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--color-border);
+}
