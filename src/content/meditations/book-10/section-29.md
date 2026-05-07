@@ -1,0 +1,6 @@
+---
+book: 10
+section: 29
+---
+
+Whatsoever it is that thou goest about, consider of it by thyself, and ask thyself, What? because I shall do this no more when I am dead, should therefore death seem grievous unto me?

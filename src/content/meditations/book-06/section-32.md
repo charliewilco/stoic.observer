@@ -1,0 +1,6 @@
+---
+book: 6
+section: 32
+---
+
+Dost thou not see, how even those that profess mechanic arts, though in some respect they be no better than mere idiots, yet they stick close to the course of their trade, neither can they find in their heart to decline from it: and is it not a grievous thing that an architect, or a physician shall respect the course and mysteries of their profession, more than a man the proper course and condition of his own nature, reason, which is common to him and to the Gods?

@@ -1,0 +1,6 @@
+---
+book: 6
+section: 29
+---
+
+Stir up thy mind, and recall thy wits again from thy natural dreams, and visions, and when thou art perfectly awoken, and canst perceive that they were but dreams that troubled thee, as one newly awakened out of another kind of sleep look upon these worldly things with the same mind as thou didst upon those, that thou sawest in thy sleep.

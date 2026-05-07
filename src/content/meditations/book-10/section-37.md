@@ -1,0 +1,6 @@
+---
+book: 10
+section: 37
+---
+
+Use thyself; as often, as thou seest any man do anything, presently (if it be possible) to say unto thyself, What is this man's end in this his action? But begin this course with thyself first of all, and diligently examine thyself concerning whatsoever thou doest.

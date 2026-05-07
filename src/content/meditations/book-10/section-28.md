@@ -1,0 +1,6 @@
+---
+book: 10
+section: 28
+---
+
+As a pig that cries and flings when his throat is cut, fancy to thyself every one to be, that grieves for any worldly thing and takes on. Such a one is he also, who upon his bed alone, doth bewail the miseries of this our mortal life. And remember this, that Unto reasonable creatures only it is granted that they may willingly and freely submit unto Providence: but absolutely to submit, is a necessity imposed upon all creatures equally.
