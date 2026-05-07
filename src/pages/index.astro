@@ -5,16 +5,16 @@ import { authorPages, authorWorks } from "../lib/works";
 ---
 
 <Base
-	title="Stoic Reader"
+	title="stoic.observer"
 	description="Read and search public-domain translations of practical Stoic texts."
 >
-	<h1>Stoic Reader</h1>
+	<MeditationsSearch slot="header-search" client:load />
+
+	<h1>stoic.observer</h1>
 	<p>
 		Read and search public-domain translations of Marcus Aurelius, Epictetus, Seneca, Musonius
 		Rufus, and Hierocles.
 	</p>
-
-	<MeditationsSearch client:load />
 
 	<nav aria-label="Works by author" class="book-list">
 		<h2>Works</h2>

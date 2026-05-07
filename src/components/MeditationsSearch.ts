@@ -44,7 +44,7 @@ export default class MeditationsSearch extends LitElement {
 
 		form {
 			display: grid;
-			gap: 0.65rem;
+			gap: 0.75rem;
 		}
 
 		label.visually-hidden {
@@ -62,12 +62,14 @@ export default class MeditationsSearch extends LitElement {
 		input {
 			width: 100%;
 			box-sizing: border-box;
-			border: 1px solid var(--color-border);
-			border-radius: 0.35rem;
+			border: 1px solid var(--color-border-strong);
+			border-radius: 0;
 			background: var(--color-surface);
 			color: var(--color-text);
 			font: inherit;
-			padding: 0.7rem 0.8rem;
+			padding: 0.68rem 0.75rem;
+			box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-text) 7%, transparent);
+			appearance: none;
 		}
 
 		input:focus-visible,
@@ -79,22 +81,27 @@ export default class MeditationsSearch extends LitElement {
 		p {
 			margin: 0;
 			color: var(--color-muted);
+			font-size: 0.86rem;
+			line-height: 1.45;
 		}
 
 		ul {
 			list-style: none;
 			display: grid;
-			gap: 0.85rem;
-			padding: 0;
-			margin: 0.25rem 0 0;
+			gap: 0;
+			padding: 0.4rem 0 0;
+			margin: 0;
+			border-top: 1px solid var(--color-border);
+			max-height: min(28rem, 62vh);
+			overflow: auto;
 		}
 
 		a {
 			display: block;
 			color: inherit;
-			text-decoration-color: var(--color-link-underline);
-			text-decoration-thickness: 0.08em;
-			text-underline-offset: 0.18em;
+			padding: 0.85rem 0;
+			text-decoration: none;
+			border-bottom: 1px solid var(--color-border);
 		}
 
 		a:hover {
@@ -104,12 +111,15 @@ export default class MeditationsSearch extends LitElement {
 		.result-title {
 			display: block;
 			font-weight: 700;
-			margin-bottom: 0.2rem;
+			font-size: 0.92rem;
+			line-height: 1.35;
+			margin-bottom: 0.25rem;
 		}
 
 		.excerpt {
 			display: block;
 			color: var(--color-muted);
+			font-size: 0.88rem;
 			line-height: 1.55;
 		}
 

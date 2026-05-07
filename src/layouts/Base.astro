@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const hasHeaderSearch = Astro.slots.has("header-search");
 ---
 
 <!doctype html>
@@ -21,15 +22,21 @@ const { title, description } = Astro.props;
 		<a class="skip-link" href="#main">Skip to content</a>
 		<header class="site-header">
 			<nav aria-label="Primary navigation">
-				<a href="/">Meditations</a>
+				<a href="/">stoic.observer</a>
 			</nav>
-			<slot name="header-search" />
+			{
+				hasHeaderSearch && (
+					<div class="floating-search">
+						<slot name="header-search" />
+					</div>
+				)
+			}
 		</header>
 		<main id="main">
 			<slot />
 		</main>
 		<footer class="site-footer">
-			<p>Marcus Aurelius, <cite>Meditations</cite>. George Long translation.</p>
+			<p>Public-domain practical Stoic texts, built for quiet reading.</p>
 		</footer>
 	</body>
 </html>

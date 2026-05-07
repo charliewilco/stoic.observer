@@ -1,27 +1,33 @@
 :root {
 	color-scheme: light dark;
-	--color-background: #f8f4ec;
-	--color-surface: #fffaf2;
-	--color-text: #211b17;
-	--color-muted: #665a50;
-	--color-border: #c8b9a8;
-	--color-focus: #7a4e0f;
-	--color-link-hover: #704700;
-	--color-link-underline: #9b7a53;
-	--color-mark: #f0d98c;
+	--color-background: #f7f3eb;
+	--color-surface: #fffdf8;
+	--color-text: #181614;
+	--color-muted: #6e665d;
+	--color-subtle: #655d54;
+	--color-border: #d8d0c4;
+	--color-border-strong: #b9afa2;
+	--color-focus: #986a24;
+	--color-link-hover: #000000;
+	--color-link-underline: #aaa094;
+	--color-mark: #f3df8f;
+	--measure: 38rem;
+	--measure-wide: 48rem;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--color-background: #24211d;
-		--color-surface: #302c27;
-		--color-text: #f0e8dc;
-		--color-muted: #c6b9aa;
-		--color-border: #6f6256;
-		--color-focus: #f2c46f;
-		--color-link-hover: #ffd58a;
-		--color-link-underline: #cfaa73;
-		--color-mark: #7a5b16;
+		--color-background: #1f1e1b;
+		--color-surface: #282622;
+		--color-text: #f4eee5;
+		--color-muted: #bdb3a6;
+		--color-subtle: #c2b8aa;
+		--color-border: #514b43;
+		--color-border-strong: #756c60;
+		--color-focus: #e8bc6a;
+		--color-link-hover: #ffffff;
+		--color-link-underline: #8a7d6e;
+		--color-mark: #6c551f;
 	}
 }
 
@@ -33,72 +39,105 @@ html {
 	background: var(--color-background);
 	color: var(--color-text);
 	font-family: ui-serif, Georgia, serif;
-	font-size: 18px;
-	line-height: 1.7;
+	font-size: 19px;
+	line-height: 1.72;
+	text-rendering: optimizeLegibility;
 }
 
 body {
-	max-width: 640px;
 	margin: 0 auto;
-	padding: 1rem;
+	padding: 0 1.25rem 1.5rem;
+	background: var(--color-background);
 }
 
 a {
 	color: inherit;
 	text-decoration-color: var(--color-link-underline);
-	text-decoration-thickness: 0.08em;
-	text-underline-offset: 0.18em;
+	text-decoration-thickness: 0.055em;
+	text-underline-offset: 0.22em;
+	transition:
+		color 140ms ease,
+		text-decoration-color 140ms ease;
 }
 
 a:hover {
 	color: var(--color-link-hover);
+	text-decoration-color: currentColor;
 }
 
 :focus-visible {
-	outline: 3px solid var(--color-focus);
-	outline-offset: 3px;
+	outline: 2px solid var(--color-focus);
+	outline-offset: 4px;
 }
 
 h1,
-h2 {
+h2,
+h3 {
 	line-height: 1.2;
+	letter-spacing: 0;
 }
 
 h1 {
-	font-size: clamp(2rem, 2rem + 1vw, 3rem);
-	margin: 3rem 0 1rem;
+	font-size: 2.35rem;
+	font-weight: 700;
+	margin: 4.25rem 0 0.9rem;
 }
 
 h2 {
-	font-size: 1.1rem;
+	font-size: 1.15rem;
+	margin: 2.75rem 0 0.75rem;
+}
+
+h3 {
+	font-size: 1rem;
+	margin: 2rem 0 0.35rem;
 }
 
 p {
 	margin: 0 0 1.2rem;
 }
 
+main,
+.site-header,
+.site-footer {
+	max-width: var(--measure);
+	margin-inline: auto;
+}
+
 article {
-	margin-top: 2rem;
+	margin-top: 2.75rem;
 }
 
 section {
-	margin: 2.5rem 0;
+	margin: 3rem 0;
 }
 
 .section-heading {
-	color: var(--color-muted);
-	font-size: 0.95rem;
+	color: var(--color-subtle);
+	font-size: 0.82rem;
 	font-weight: 700;
-	margin: 0 0 0.5rem;
+	line-height: 1.3;
+	margin: 0 0 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
 }
 
 @media (min-width: 760px) {
 	.section-heading {
-		margin-left: -2.4rem;
+		margin-left: -5.2rem;
 		float: left;
-		width: 1.6rem;
+		width: 4.1rem;
 		text-align: right;
+		padding-top: 0.15rem;
 	}
+}
+
+.section-text {
+	font-size: 1rem;
+}
+
+.section-text p {
+	margin-bottom: 1.35rem;
 }
 
 .section-text > :last-child {
@@ -107,8 +146,8 @@ section {
 
 .skip-link {
 	position: absolute;
-	top: 0.75rem;
-	left: 0.75rem;
+	top: 0.85rem;
+	left: 0.85rem;
 	transform: translateY(-200%);
 	background: var(--color-surface);
 	border: 1px solid var(--color-border);
@@ -122,14 +161,40 @@ section {
 
 .site-header {
 	display: grid;
-	gap: 1rem;
-	padding: 1rem 0 2rem;
+	gap: 1.1rem;
+	padding: 1.15rem 0 1.45rem;
 	border-bottom: 1px solid var(--color-border);
 }
 
 .site-header nav {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.site-header nav a {
+	text-decoration: none;
+}
+
+.site-header nav a:hover {
+	color: var(--color-muted);
+}
+
+.floating-search {
+	position: fixed;
+	top: 0.75rem;
+	right: max(1rem, calc((100vw - var(--measure-wide)) / 2));
+	z-index: 10;
+	width: min(21rem, calc(100vw - 2rem));
+	padding: 0.55rem;
+	background: color-mix(in srgb, var(--color-background) 92%, transparent);
+	border: 1px solid var(--color-border);
+	box-shadow: 0 0.75rem 2.5rem color-mix(in srgb, var(--color-text) 12%, transparent);
+	backdrop-filter: blur(12px);
 }
 
 .site-footer {
@@ -141,14 +206,46 @@ section {
 }
 
 .book-list {
+	max-width: var(--measure-wide);
+	margin: 3.5rem auto 0;
+	padding-top: 1.2rem;
+	border-top: 1px solid var(--color-border);
+}
+
+.book-list section {
+	margin: 1.6rem 0;
+	padding-top: 1.35rem;
+	border-top: 1px solid var(--color-border);
+}
+
+.book-list section:first-of-type {
+	border-top: 0;
+	padding-top: 0;
+}
+
+.book-list ul,
+.book-list ol,
+main > nav ol {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+	gap: 0.45rem 1.2rem;
+	padding-left: 1.15rem;
+}
+
+.book-list li,
+main > nav li {
+	padding-left: 0.15rem;
+}
+
+main > nav {
 	margin-top: 3rem;
 }
 
-.book-list ol {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-	gap: 0.35rem 1rem;
-	padding-left: 1.4rem;
+main > nav h2 {
+	color: var(--color-muted);
+	font-size: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 }
 
 .pagination {
@@ -156,7 +253,41 @@ section {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	gap: 1rem;
-	margin-top: 3rem;
-	padding-top: 1.5rem;
+	margin-top: 4rem;
+	padding-top: 1.2rem;
 	border-top: 1px solid var(--color-border);
+	color: var(--color-muted);
+	font-size: 0.9rem;
+}
+
+.pagination a {
+	text-decoration: none;
+	border-bottom: 1px solid var(--color-link-underline);
+}
+
+@media (max-width: 540px) {
+	html {
+		font-size: 18px;
+	}
+
+	body {
+		padding-inline: 1rem;
+	}
+
+	h1 {
+		font-size: 2rem;
+		margin-top: 3rem;
+	}
+
+	.pagination {
+		display: grid;
+	}
+
+	.floating-search {
+		top: auto;
+		right: 0.75rem;
+		bottom: 0.75rem;
+		left: 0.75rem;
+		width: auto;
+	}
 }
