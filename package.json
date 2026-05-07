@@ -1,0 +1,23 @@
+{
+	"name": "meditations-reader",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"postbuild": "pagefind --site dist",
+		"preview": "astro preview",
+		"parse": "tsx scripts/parse-gutenberg.ts"
+	},
+	"dependencies": {
+		"@astrojs/lit": "^4.3.0",
+		"astro": "^6.3.0",
+		"lit": "^3.3.2"
+	},
+	"devDependencies": {
+		"pagefind": "^1.5.2",
+		"tsx": "^4.21.0",
+		"typescript": "^6.0.3"
+	}
+}
