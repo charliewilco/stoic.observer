@@ -1,0 +1,6 @@
+---
+book: 6
+section: 1
+---
+
+The matter itself, of which the universe doth consist, is of itself very tractable and pliable. That rational essence that doth govern it, hath in itself no cause to do evil. It hath no evil in itself; neither can it do anything that is evil: neither can anything be hurt by it. And all things are done and determined according to its will and prescript.

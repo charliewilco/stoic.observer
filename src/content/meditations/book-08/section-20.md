@@ -1,0 +1,6 @@
+---
+book: 8
+section: 20
+---
+
+That which must be the subject of thy consideration, is either the matter itself, or the dogma, or the operation, or the true sense and signification.

@@ -1,0 +1,6 @@
+---
+book: 3
+section: 6
+---
+
+To be cheerful, and to stand in no need, either of other men's help or attendance, or of that rest and tranquillity, which thou must be beholding to others for. Rather like one that is straight of himself, or hath ever been straight, than one that hath been rectified.

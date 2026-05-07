@@ -1,0 +1,6 @@
+---
+book: 4
+section: 23
+---
+
+A black or malign disposition, an effeminate disposition; an hard inexorable disposition, a wild inhuman disposition, a sheepish disposition, a childish disposition; a blockish, a false, a scurril, a fraudulent, a tyrannical: what then? If he be a stranger in the world, that knows not the things that are in it; why not be a stranger as well, that wonders at the things that are done in it?

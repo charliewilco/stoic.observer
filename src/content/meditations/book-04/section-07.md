@@ -1,0 +1,6 @@
+---
+book: 4
+section: 7
+---
+
+Let opinion be taken away, and no man will think himself wronged. If no man shall think himself wronged, then is there no more any such thing as wrong. That which makes not man himself the worse, cannot make his life the worse, neither can it hurt him either inwardly or outwardly. It was expedient in nature that it should be so, and therefore necessary.

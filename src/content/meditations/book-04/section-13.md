@@ -1,0 +1,6 @@
+---
+book: 4
+section: 13
+---
+
+Within ten days, if so happen, thou shalt be esteemed a god of them, who now if thou shalt return to the dogmata and to the honouring of reason, will esteem of thee no better than of a mere brute, and of an ape.

@@ -1,0 +1,6 @@
+---
+book: 6
+section: 10
+---
+
+If it were that thou hadst at one time both a stepmother, and a natural mother living, thou wouldst honour and respect her also; nevertheless to thine own natural mother would thy refuge, and recourse be continually. So let the court and thy philosophy be unto thee. Have recourse unto it often, and comfort thyself in her, by whom it is that those other things are made tolerable unto thee, and thou also in those things not intolerable unto others.

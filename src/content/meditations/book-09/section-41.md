@@ -1,0 +1,6 @@
+---
+book: 9
+section: 41
+---
+
+'In my sickness' (saith Epicurus of himself:) 'my discourses were not concerning the nature of my disease, neither was that, to them that came to visit me, the subject of my talk; but in the consideration and contemplation of that, which was of especial weight and moment, was all my time bestowed and spent, and among others in this very thing, how my mind, by a natural and unavoidable sympathy partaking in some sort with the present indisposition of my body, might nevertheless keep herself free from trouble, and in present possession of her own proper happiness. Neither did I leave the ordering of my body to the physicians altogether to do with me what they would, as though I expected any great matter from them, or as though I thought it a matter of such great consequence, by their means to recover my health: for my present estate, methought, liked me very well, and gave me good content.' Whether therefore in sickness (if thou chance to sicken) or in what other kind of extremity soever, endeavour thou also to be in thy mind so affected, as he doth report of himself: not to depart from thy philosophy for anything that can befall thee, nor to give ear to the discourses of silly people, and mere naturalists.

@@ -1,0 +1,6 @@
+---
+book: 6
+section: 16
+---
+
+Under, above, and about, are the motions of the elements; but the motion of virtue, is none of those motions, but is somewhat more excellent and divine. Whose way (to speed and prosper in it) must be through a way, that is not easily comprehended.

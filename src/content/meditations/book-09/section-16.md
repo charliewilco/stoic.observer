@@ -1,0 +1,6 @@
+---
+book: 9
+section: 16
+---
+
+Sift their minds and understandings, and behold what men they be, whom thou dost stand in fear of what they shall judge of thee, what they themselves judge of themselves.

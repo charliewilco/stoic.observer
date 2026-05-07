@@ -1,0 +1,6 @@
+---
+book: 8
+section: 17
+---
+
+Whatsoever is, was made for something: as a horse, a vine. Why wonderest thou? The sun itself will say of itself, I was made for something; and so hath every god its proper function. What then were then made for? to disport and delight thyself? See how even common sense and reason cannot brook it.

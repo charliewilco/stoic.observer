@@ -1,0 +1,6 @@
+---
+book: 7
+section: 24
+---
+
+Out of Antisthenes. 'It is a princely thing to do well, and to be ill-spoken of. It is a shameful thing that the face should be subject unto the mind, to be put into what shape it will, and to be dressed by it as it will; and that the mind should not bestow so much care upon herself, as to fashion herself, and to dress herself as best becometh her.'

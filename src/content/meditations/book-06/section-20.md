@@ -1,0 +1,6 @@
+---
+book: 6
+section: 20
+---
+
+If anybody shall reprove me, and shall make it apparent unto me, that in any either opinion or action of mine I do err, I will most gladly retract. For it is the truth that I seek after, by which I am sure that never any man was hurt; and as sure, that he is hurt that continueth in any error, or ignorance whatsoever.

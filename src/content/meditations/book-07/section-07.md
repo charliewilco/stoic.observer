@@ -1,0 +1,6 @@
+---
+book: 7
+section: 7
+---
+
+Whatsoever is material, doth soon vanish away into the common substance of the whole; and whatsoever is formal, or, whatsoever doth animate that which is material, is soon resumed into the common reason of the whole; and the fame and memory of anything, is soon swallowed up by the general age and duration of the whole.

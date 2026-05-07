@@ -1,0 +1,6 @@
+---
+book: 9
+section: 12
+---
+
+All those things, for matter of experience are usual and ordinary; for their continuance but for a day; and for their matter, most base and filthy. As they were in the days of those whom we have buried, so are they now also, and no otherwise.

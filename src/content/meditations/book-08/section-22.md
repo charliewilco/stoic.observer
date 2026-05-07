@@ -1,0 +1,6 @@
+---
+book: 8
+section: 22
+---
+
+Shall I do it? I will; so the end of my action be to do good unto men. Doth anything by way of cross or adversity happen unto me? I accept it, with reference unto the Gods, and their providence; the fountain of all things, from which whatsoever comes to pass, doth hang and depend.

@@ -1,0 +1,6 @@
+---
+book: 8
+section: 52
+---
+
+Not only now henceforth to have a common breath, or to hold correspondency of breath, with that air, that compasseth us about; but to have a common mind, or to hold correspondency of mind also with that rational substance, which compasseth all things. For, that also is of itself, and of its own nature (if a man can but draw it in as he should) everywhere diffused; and passeth through all things, no less than the air doth, if a man can but suck it in.

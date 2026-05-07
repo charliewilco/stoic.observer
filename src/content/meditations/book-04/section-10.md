@@ -1,0 +1,6 @@
+---
+book: 4
+section: 10
+---
+
+These two rules, thou must have always in a readiness. First, do nothing at all, but what reason proceeding from that regal and supreme part, shall for the good and benefit of men, suggest unto thee. And secondly, if any man that is present shall be able to rectify thee or to turn thee from some erroneous persuasion, that thou be always ready to change thy mind, and this change to proceed, not from any respect of any pleasure or credit thereon depending, but always from some probable apparent ground of justice, or of some public good thereby to be furthered; or from some other such inducement.

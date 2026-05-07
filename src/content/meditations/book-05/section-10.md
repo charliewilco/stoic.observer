@@ -1,0 +1,6 @@
+---
+book: 5
+section: 10
+---
+
+Thou must comfort thyself in the expectation of thy natural dissolution, and in the meantime not grieve at the delay; but rest contented in those two things. First, that nothing shall happen unto thee, which is not according to the nature of the universe. Secondly, that it is in thy power, to do nothing against thine own proper God, and inward spirit. For it is not in any man's power to constrain thee to transgress against him.

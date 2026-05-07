@@ -1,0 +1,6 @@
+---
+book: 8
+section: 41
+---
+
+Why should I grieve myself; who never did willingly grieve any other! One thing rejoices one and another thing another. As for me, this is my joy, if my understanding be right and sound, as neither averse from any man, nor refusing any of those things which as a man I am subject unto; if I can look upon all things in the world meekly and kindly; accept all things and carry myself towards everything according to to true worth of the thing itself.

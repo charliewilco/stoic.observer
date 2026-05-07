@@ -1,0 +1,6 @@
+---
+book: 10
+section: 4
+---
+
+Him that offends, to teach with love and meek ness, and to show him his error. But if thou canst not, then to blame thyself; or rather not thyself neither, if thy will and endeavours have not been wanting.

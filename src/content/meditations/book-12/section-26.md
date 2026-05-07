@@ -1,0 +1,6 @@
+---
+book: 12
+section: 26
+---
+
+What is the present estate of my understanding? For herein lieth all indeed. As for all other things, they are without the compass of mine own will: and if without the compass of my will, then are they as dead things unto me, and as it were mere smoke.

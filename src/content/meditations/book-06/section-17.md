@@ -1,0 +1,6 @@
+---
+book: 6
+section: 17
+---
+
+Who can choose but wonder at them? They will not speak well of them that are at the same time with them, and live with them; yet they themselves are very ambitious, that they that shall follow, whom they have never seen, nor shall ever see, should speak well of them. As if a man should grieve that he hath not been commended by them, that lived before him.

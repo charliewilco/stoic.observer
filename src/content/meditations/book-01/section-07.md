@@ -1,0 +1,6 @@
+---
+book: 1
+section: 7
+---
+
+From Alexander the Grammarian, to be un-reprovable myself, and not reproachfully to reprehend any man for a barbarism, or a solecism, or any false pronunciation, but dextrously by way of answer, or testimony, or confirmation of the same matter (taking no notice of the word) to utter it as it should have been spoken; or by some other such close and indirect admonition, handsomely and civilly to tell him of it.

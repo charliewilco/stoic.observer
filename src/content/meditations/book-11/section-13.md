@@ -1,0 +1,6 @@
+---
+book: 11
+section: 13
+---
+
+They contemn one another, and yet they seek to please one another: and whilest they seek to surpass one another in worldly pomp and greatness, they most debase and prostitute themselves in their better part one to another.

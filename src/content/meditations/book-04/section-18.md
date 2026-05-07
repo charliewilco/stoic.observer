@@ -1,0 +1,6 @@
+---
+book: 4
+section: 18
+---
+
+Not to wander out of the way, but upon every motion and desire, to perform that which is just: and ever to be careful to attain to the true natural apprehension of every fancy, that presents itself.

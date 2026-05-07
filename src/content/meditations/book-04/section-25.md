@@ -1,0 +1,6 @@
+---
+book: 4
+section: 25
+---
+
+There is, who without so much as a coat; and there is, who without so much as a book, doth put philosophy in practice. I am half naked, neither have I bread to eat, and yet I depart not from reason, saith one. But I say; I want the food of good teaching, and instructions, and yet I depart not from reason.

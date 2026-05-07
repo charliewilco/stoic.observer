@@ -1,0 +1,6 @@
+---
+book: 4
+section: 33
+---
+
+Ever consider and think upon the world as being but one living substance, and having but one soul, and how all things in the world, are terminated into one sensitive power; and are done by one general motion as it were, and deliberation of that one soul; and how all things that are, concur in the cause of one another's being, and by what manner of connection and concatenation all things happen.

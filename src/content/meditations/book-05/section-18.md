@@ -1,0 +1,6 @@
+---
+book: 5
+section: 18
+---
+
+Honour that which is chiefest and most powerful in the world, and that is it, which makes use of all things, and governs all things. So also in thyself; honour that which is chiefest, and most powerful; and is of one kind and nature with that which we now spake of. For it is the very same, which being in thee, turneth all other things to its own use, and by whom also thy life is governed.

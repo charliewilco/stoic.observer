@@ -1,0 +1,6 @@
+---
+book: 5
+section: 2
+---
+
+How easy a thing is it for a man to put off from him all turbulent adventitious imaginations, and presently to be in perfect rest and tranquillity!

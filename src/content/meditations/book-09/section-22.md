@@ -1,0 +1,6 @@
+---
+book: 9
+section: 22
+---
+
+Children's anger, mere babels; wretched souls bearing up dead bodies, that they may not have their fall so soon: even as it is in that common dirge song.

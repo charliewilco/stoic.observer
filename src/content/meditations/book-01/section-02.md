@@ -1,0 +1,6 @@
+---
+book: 1
+section: 2
+---
+
+Of him that brought me up, not to be fondly addicted to either of the two great factions of the coursers in the circus, called Prasini, and Veneti: nor in the amphitheatre partially to favour any of the gladiators, or fencers, as either the Parmularii, or the Secutores. Moreover, to endure labour; nor to need many things; when I have anything to do, to do it myself rather than by others; not to meddle with many businesses; and not easily to admit of any slander.

@@ -1,0 +1,6 @@
+---
+book: 1
+section: 10
+---
+
+Of Catulus, not to contemn any friend's expostulation, though unjust, but to strive to reduce him to his former disposition: freely and heartily to speak well of all my masters upon any occasion, as it is reported of Domitius, and Athenodotus: and to love my children with true affection.

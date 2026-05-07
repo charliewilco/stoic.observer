@@ -1,0 +1,6 @@
+---
+book: 11
+section: 4
+---
+
+Have I done anything charitably? then am I benefited by it. See that this upon all occasions may present itself unto thy mind, and never cease to think of it. What is thy profession? to be good. And how should this be well brought to pass, but by certain theorems and doctrines; some Concerning the nature of the universe, and some Concerning the proper and particular constitution of man?

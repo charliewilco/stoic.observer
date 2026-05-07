@@ -1,0 +1,6 @@
+---
+book: 5
+section: 21
+---
+
+To live with the Gods. He liveth with the Gods, who at all times affords unto them the spectacle of a soul, both contented and well pleased with whatsoever is afforded, or allotted unto her; and performing whatsoever is pleasing to that Spirit, whom (being part of himself) Jove hath appointed to every man as his overseer and governor.

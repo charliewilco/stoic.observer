@@ -1,0 +1,6 @@
+---
+book: 8
+section: 15
+---
+
+If it were thine act and in thine own power, wouldest thou do it? If it were not, whom dost tin accuse? the atoms, or the Gods? For to do either, the part of a mad man. Thou must therefore blame nobody, but if it be in thy power, redress what is amiss; if it be not, to what end is it to complain? For nothing should be done but to some certain end.

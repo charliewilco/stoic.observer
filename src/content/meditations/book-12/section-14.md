@@ -1,0 +1,6 @@
+---
+book: 12
+section: 14
+---
+
+Of everything that presents itself unto thee, to consider what the true nature of it is, and to unfold it, as it were, by dividing it into that which is formal: that which is material: the true use or end of it, and the just time that it is appointed to last.

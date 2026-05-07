@@ -1,0 +1,6 @@
+---
+book: 6
+section: 9
+---
+
+Whensoever by some present hard occurrences thou art constrained to be in some sort troubled and vexed, return unto thyself as soon as may be, and be not out of tune longer than thou must needs. For so shalt thou be the better able to keep thy part another time, and to maintain the harmony, if thou dost use thyself to this continually; once out, presently to have recourse unto it, and to begin again.

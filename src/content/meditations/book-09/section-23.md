@@ -1,0 +1,6 @@
+---
+book: 9
+section: 23
+---
+
+Go to the quality of the cause from which the effect doth proceed. Behold it by itself bare and naked, separated from all that is material. Then consider the utmost bounds of time that that cause, thus and thus qualified, can subsist and abide.

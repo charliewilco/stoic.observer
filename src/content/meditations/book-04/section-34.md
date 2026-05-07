@@ -1,0 +1,6 @@
+---
+book: 4
+section: 34
+---
+
+What art thou, that better and divine part excepted, but as Epictetus said well, a wretched soul, appointed to carry a carcass up and down?

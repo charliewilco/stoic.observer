@@ -1,0 +1,6 @@
+---
+book: 8
+section: 26
+---
+
+If pain be an evil, either it is in regard of the body; (and that cannot be, because the body of itself is altogether insensible:) or in regard of the soul But it is in the power of the soul, to preserve her own peace and tranquillity, and not to suppose that pain is evil. For all judgment and deliberation; all prosecution, or aversation is from within, whither the sense of evil (except it be let in by opinion) cannot penetrate.

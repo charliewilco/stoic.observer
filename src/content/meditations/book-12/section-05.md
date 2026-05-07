@@ -1,0 +1,6 @@
+---
+book: 12
+section: 5
+---
+
+Use thyself even unto those things that thou doest at first despair of. For the left hand we see, which for the most part lieth idle because not used; yet doth it hold the bridle with more strength than the right, because it hath been used unto it.

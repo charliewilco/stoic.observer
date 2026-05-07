@@ -1,0 +1,6 @@
+---
+book: 12
+section: 7
+---
+
+All worldly things thou must behold and consider, dividing them into matter, form, and reference, or their proper end.

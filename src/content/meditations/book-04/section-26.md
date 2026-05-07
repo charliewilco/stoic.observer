@@ -1,0 +1,6 @@
+---
+book: 4
+section: 26
+---
+
+What art and profession soever thou hast learned, endeavour to affect it, and comfort thyself in it; and pass the remainder of thy life as one who from his whole heart commits himself and whatsoever belongs unto him, unto the gods: and as for men, carry not thyself either tyrannically or servilely towards any.

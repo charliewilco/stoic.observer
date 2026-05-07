@@ -1,0 +1,6 @@
+---
+book: 12
+section: 22
+---
+
+Herein doth consist happiness of life, for a man to know thoroughly the true nature of everything; what is the matter, and what is the form of it: with all his heart and soul, ever to do that which is just, and to speak the truth. What then remaineth but to enjoy thy life in a course and coherence of good actions, one upon another immediately succeeding, and never interrupted, though for never so little a while?

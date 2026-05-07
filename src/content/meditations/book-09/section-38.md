@@ -1,0 +1,6 @@
+---
+book: 9
+section: 38
+---
+
+Either all things by the providence of reason happen unto every particular, as a part of one general body; and then it is against reason that a part should complain of anything that happens for the good of the whole; or if, according to Epicurus, atoms be the cause of all things and that life be nothing else but an accidentary confusion of things, and death nothing else, but a mere dispersion and so of all other things: what doest thou trouble thyself for?

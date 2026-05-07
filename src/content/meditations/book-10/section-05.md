@@ -1,0 +1,6 @@
+---
+book: 10
+section: 5
+---
+
+Whatsoever it be that happens unto thee, it is that which from all time was appointed unto thee. For by the same coherence of causes, by which thy substance from all eternity was appointed to be, was also whatsoever should happen unto it, destinated and appointed.

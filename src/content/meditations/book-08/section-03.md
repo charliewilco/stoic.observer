@@ -1,0 +1,6 @@
+---
+book: 8
+section: 3
+---
+
+Alexander, Caius, Pompeius; what are these to Diogenes, Heraclitus, and Socrates? These penetrated into the true nature of things; into all causes, and all subjects: and upon these did they exercise their power and authority. But as for those, as the extent of their error was, so far did their slavery extend.

@@ -1,0 +1,6 @@
+---
+book: 7
+section: 14
+---
+
+What is εὐδαιμονία, or happiness: but ἀγαθὸς δαίμων, or, a good dæmon, or spirit? What then dost thou do here, O opinion? By the Gods I adjure thee, that thou get thee gone, as thou earnest: for I need thee not. Thou earnest indeed unto me according to thy ancient wonted manner. It is that, that all men have ever been subject unto. That thou camest therefore I am not angry with thee, only begone, now that I have found thee what thou art.

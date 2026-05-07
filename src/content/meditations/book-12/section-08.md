@@ -1,0 +1,6 @@
+---
+book: 12
+section: 8
+---
+
+How happy is man in this his power that hath been granted unto him: that he needs not do anything but what God shall approve, and that he may embrace contentedly, whatsoever God doth send unto him?

@@ -1,0 +1,6 @@
+---
+book: 5
+section: 7
+---
+
+The form of the Athenians' prayer did run thus: 'O rain, rain, good Jupiter, upon all the grounds and fields that belong to the Athenians.' Either we should not pray at all, or thus absolutely and freely; and not every one for himself in particular alone.

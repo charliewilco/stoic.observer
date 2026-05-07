@@ -1,0 +1,6 @@
+---
+book: 7
+section: 11
+---
+
+Of things that are external, happen what will to that which can suffer by external accidents. Those things that suffer let them complain themselves, if they will; as for me, as long as I conceive no such thing, that that which is happened is evil, I have no hurt; and it is in my power not to conceive any such thing.

@@ -1,0 +1,6 @@
+---
+book: 9
+section: 9
+---
+
+Either teach them better if it be in thy power; or if it be not, remember that for this use, to bear with them patiently, was mildness and goodness granted unto thee. The Gods themselves are good unto such; yea and in some things, (as in matter of health, of wealth, of honour,) are content often to further their endeavours: so good and gracious are they. And mightest thou not be so too? or, tell me, what doth hinder thee?

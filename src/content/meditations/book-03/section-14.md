@@ -1,0 +1,6 @@
+---
+book: 3
+section: 14
+---
+
+As physicians and chirurgeons have always their instruments ready at hand for all sudden cures; so have thou always thy dogmata in a readiness for the knowledge of things, both divine and human: and whatsoever thou dost, even in the smallest things that thou dost, thou must ever remember that mutual relation, and connection that is between these two things divine, and things human. For without relation unto God, thou shalt never speed in any worldly actions; nor on the other side in any divine, without some respect had to things human.

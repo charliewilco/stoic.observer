@@ -1,0 +1,6 @@
+---
+book: 4
+section: 15
+---
+
+Now much time and leisure doth he gain, who is not curious to know what his neighbour hath said, or hath done, or hath attempted, but only what he doth himself, that it may be just and holy? or to express it in Agathos' words, Not to look about upon the evil conditions of others, but to run on straight in the line, without any loose and extravagant agitation.

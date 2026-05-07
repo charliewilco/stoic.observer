@@ -1,0 +1,6 @@
+---
+book: 11
+section: 23
+---
+
+What Socrates answered unto Perdiccas, why he did not come unto him, Lest of all deaths I should die the worst kind of death, said he: that is, not able to requite the good that hath been done unto me.
