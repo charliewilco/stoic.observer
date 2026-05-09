@@ -12,9 +12,7 @@ export async function getStaticPaths() {
 		params: { book: String(book) },
 		props: {
 			book,
-			sections: entries
-				.filter((entry) => entry.data.book === book)
-				.sort((a, b) => a.data.section - b.data.section),
+			sections: entries.filter((entry) => entry.data.book === book).sort((a, b) => a.data.section - b.data.section),
 		},
 	}));
 }
@@ -29,10 +27,7 @@ const previousBook = book > 1 ? book - 1 : undefined;
 const nextBook = book < 12 ? book + 1 : undefined;
 ---
 
-<Base
-	title={`Book ${book} | Meditations Reader`}
-	description={`Read Book ${book} of Marcus Aurelius' Meditations.`}
->
+<Base title={`Book ${book} | Meditations Reader`} description={`Read Book ${book} of Marcus Aurelius' Meditations.`}>
 	<MeditationsSearch slot="header-search" />
 
 	<article data-pagefind-ignore="all">

@@ -29,10 +29,7 @@ const works = authorWorks(page.slug).map((work) => {
 });
 ---
 
-<Base
-	title={`${page.name} | Stoic Reader`}
-	description={`Works by ${page.name} in the Stoic Reader.`}
->
+<Base title={`${page.name} | Stoic Reader`} description={`Works by ${page.name} in the Stoic Reader.`}>
 	<header class="library-header">
 		<p class="page-kicker">Author</p>
 		<h1>{page.name}</h1>

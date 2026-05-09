@@ -97,8 +97,7 @@ export async function getStaticPaths() {
 		}
 		const entries = sortEntries(work, rawEntries);
 		const books = [...new Set(entries.map((entry) => entry.data.book))].sort((a, b) => a - b);
-		const generatedBooks =
-			books.length > 0 ? books : Array.from({ length: work.bookCount }, (_, index) => index + 1);
+		const generatedBooks = books.length > 0 ? books : Array.from({ length: work.bookCount }, (_, index) => index + 1);
 
 		paths.push({
 			params: { canon: work.slug },
@@ -208,9 +207,7 @@ function chapterTitle(work: Work, entry: CanonEntry): string {
 					)}
 					<a href={`/${page.work.slug}/`}>Back to {page.work.title}</a>
 					{page.nextEntry ? (
-						<a href={sectionPath(page.work, page.nextEntry)}>
-							Next: {referenceLabel(page.work, page.nextEntry.data)}
-						</a>
+						<a href={sectionPath(page.work, page.nextEntry)}>Next: {referenceLabel(page.work, page.nextEntry.data)}</a>
 					) : (
 						<span />
 					)}
@@ -246,19 +243,13 @@ function chapterTitle(work: Work, entry: CanonEntry): string {
 						{page.work.title} · Book {page.book}
 					</h1>
 					{page.entries.length > 0 ? (
-						page.entries.map((entry) => (
-							<CanonPassage entry={entry} work={page.work} headingLevel="h2" />
-						))
+						page.entries.map((entry) => <CanonPassage entry={entry} work={page.work} headingLevel="h2" />)
 					) : (
 						<p>Content has not been parsed yet.</p>
 					)}
 				</article>
 				<nav aria-label="Book navigation" class="pagination">
-					{page.book > 1 ? (
-						<a href={bookPath(page.work, page.book - 1)}>Previous: Book {page.book - 1}</a>
-					) : (
-						<span />
-					)}
+					{page.book > 1 ? <a href={bookPath(page.work, page.book - 1)}>Previous: Book {page.book - 1}</a> : <span />}
 					<a href={`/${page.work.slug}/`}>Back to {page.work.title}</a>
 					{page.book < page.work.bookCount ? (
 						<a href={bookPath(page.work, page.book + 1)}>Next: Book {page.book + 1}</a>
@@ -289,13 +280,9 @@ function chapterTitle(work: Work, entry: CanonEntry): string {
 					) : (
 						<span />
 					)}
-					<a href={bookPath(page.work, page.entry.data.book)}>
-						Back to Book {page.entry.data.book}
-					</a>
+					<a href={bookPath(page.work, page.entry.data.book)}>Back to Book {page.entry.data.book}</a>
 					{page.nextEntry ? (
-						<a href={sectionPath(page.work, page.nextEntry)}>
-							Next: {referenceLabel(page.work, page.nextEntry.data)}
-						</a>
+						<a href={sectionPath(page.work, page.nextEntry)}>Next: {referenceLabel(page.work, page.nextEntry.data)}</a>
 					) : (
 						<span />
 					)}

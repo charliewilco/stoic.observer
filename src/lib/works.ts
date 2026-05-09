@@ -315,10 +315,7 @@ export function referenceLabel(work: Work, data: CollectionEntry<CanonCollection
 	return `Book ${passage.book} · ${work.itemLabel} ${passage.chapter}`;
 }
 
-export function sortEntries<T extends CollectionEntry<CanonCollection>>(
-	work: Work,
-	entries: T[],
-): T[] {
+export function sortEntries<T extends CollectionEntry<CanonCollection>>(work: Work, entries: T[]): T[] {
 	return entries.sort((a, b) => {
 		if (work.kind === "flat") {
 			return flatNumber(a.data) - flatNumber(b.data);

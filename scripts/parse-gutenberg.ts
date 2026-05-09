@@ -27,7 +27,11 @@ const contentRoot = path.join(root, "src", "content");
 
 const senecaWorks: WorkSlice[] = [
 	{ slug: "on-providence", title: "On Providence", kind: "flat" },
-	{ slug: "on-the-firmness-of-the-wise-man", title: "On the Firmness of the Wise Man", kind: "flat" },
+	{
+		slug: "on-the-firmness-of-the-wise-man",
+		title: "On the Firmness of the Wise Man",
+		kind: "flat",
+	},
 	{ slug: "on-anger", title: "On Anger", kind: "multi", bookCount: 3 },
 	{ slug: "consolation-to-marcia", title: "Consolation to Marcia", kind: "flat" },
 	{ slug: "on-the-happy-life", title: "On the Happy Life", kind: "flat" },
@@ -37,7 +41,7 @@ const senecaWorks: WorkSlice[] = [
 	{ slug: "consolation-to-polybius", title: "Consolation to Polybius", kind: "flat" },
 	{ slug: "consolation-to-helvia", title: "Consolation to Helvia", kind: "flat" },
 	{ slug: "on-benefits", title: "On Benefits", kind: "multi", bookCount: 7 },
-	{ slug: "on-mercy", title: "On Mercy", kind: "multi", bookCount: 2 }
+	{ slug: "on-mercy", title: "On Mercy", kind: "multi", bookCount: 2 },
 ];
 
 await mkdir(sourcesRoot, { recursive: true });
@@ -48,7 +52,7 @@ await parseFlatSource({
 	collection: "enchiridion",
 	label: "Enchiridion",
 	frontmatterNumberKey: "section",
-	expectedCount: 53
+	expectedCount: 53,
 });
 await parseDiscourses();
 await parseFlatSource({
@@ -57,7 +61,7 @@ await parseFlatSource({
 	label: "Letters",
 	frontmatterNumberKey: "number",
 	expectedCount: 124,
-	filePadding: 3
+	filePadding: 3,
 });
 await parseSenecaEssays();
 await parseFlatSource({
@@ -67,7 +71,7 @@ await parseFlatSource({
 	frontmatterNumberKey: "number",
 	expectedCount: 21,
 	placeholderIfMissing: true,
-	placeholderTitle: "TODO: Lecture source needed"
+	placeholderTitle: "TODO: Lecture source needed",
 });
 await parseFlatSource({
 	sourceFile: "hierocles-fragments.txt",
@@ -76,7 +80,7 @@ await parseFlatSource({
 	label: "Hierocles fragments",
 	frontmatterNumberKey: "number",
 	placeholderIfMissing: true,
-	placeholderTitle: "TODO: Fragment source needed"
+	placeholderTitle: "TODO: Fragment source needed",
 });
 
 async function parseMeditations(): Promise<void> {
@@ -102,10 +106,11 @@ async function parseMeditations(): Promise<void> {
 		await mkdir(bookDirectory, { recursive: true });
 
 		for (const section of sections) {
-			await writeMarkdown(path.join(bookDirectory, `section-${pad(section.number)}.md`), [
-				`book: ${book}`,
-				`section: ${section.number}`
-			], section.body);
+			await writeMarkdown(
+				path.join(bookDirectory, `section-${pad(section.number)}.md`),
+				[`book: ${book}`, `section: ${section.number}`],
+				section.body,
+			);
 		}
 	}
 
@@ -180,9 +185,9 @@ async function writeFlatPlaceholders(options: {
 			path.join(directory, `${pad(number, options.filePadding ?? 2)}.md`),
 			[
 				`${options.frontmatterNumberKey}: ${number}`,
-				`title: ${JSON.stringify(options.placeholderTitle ?? "TODO: Source needed")}`
+				`title: ${JSON.stringify(options.placeholderTitle ?? "TODO: Source needed")}`,
 			],
-			"TODO: Add public-domain source text."
+			"TODO: Add public-domain source text.",
 		);
 	}
 
@@ -215,9 +220,9 @@ async function parseDiscourses(): Promise<void> {
 				[
 					`book: ${book.number}`,
 					`chapter: ${chapter.number}`,
-					...(chapter.title ? [`title: ${JSON.stringify(chapter.title)}`] : [])
+					...(chapter.title ? [`title: ${JSON.stringify(chapter.title)}`] : []),
 				],
-				chapter.body
+				chapter.body,
 			);
 		}
 	}
@@ -254,11 +259,8 @@ async function parseSenecaEssays(): Promise<void> {
 			for (const passage of passages) {
 				await writeMarkdown(
 					path.join(outputRoot, `${pad(passage.number)}.md`),
-					[
-						`number: ${passage.number}`,
-						...(passage.title ? [`title: ${JSON.stringify(passage.title)}`] : [])
-					],
-					passage.body
+					[`number: ${passage.number}`, ...(passage.title ? [`title: ${JSON.stringify(passage.title)}`] : [])],
+					passage.body,
 				);
 			}
 
@@ -278,9 +280,9 @@ async function parseSenecaEssays(): Promise<void> {
 						[
 							`book: ${book.number}`,
 							`chapter: ${chapter.number}`,
-							...(chapter.title ? [`title: ${JSON.stringify(chapter.title)}`] : [])
+							...(chapter.title ? [`title: ${JSON.stringify(chapter.title)}`] : []),
 						],
-						chapter.body
+						chapter.body,
 					);
 				}
 			}
@@ -328,7 +330,7 @@ function splitMeditationsBooks(text: string): string[] {
 	const headings = findHeadings(text, /^\s*(?:THE\s+)?([A-Z]+)\s+BOOK\s*$/gim)
 		.map((heading) => ({
 			...heading,
-			number: wordToNumber(heading.label)
+			number: wordToNumber(heading.label),
 		}))
 		.filter((heading) => heading.number !== undefined) as Array<Heading & { number: number }>;
 	const sequenceStart = findLastCompleteSequence(headings, 12);
@@ -341,10 +343,13 @@ function splitMeditationsBooks(text: string): string[] {
 }
 
 function splitBookBlocks(text: string, expectedCount?: number): Array<{ number: number; body: string }> {
-	const headings = findHeadings(text, /^\s*(?:BOOK|LIBER)\s+([IVXLCDM]+|\d+|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN)\.?\s*$/gim)
+	const headings = findHeadings(
+		text,
+		/^\s*(?:BOOK|LIBER)\s+([IVXLCDM]+|\d+|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN)\.?\s*$/gim,
+	)
 		.map((heading) => ({
 			...heading,
-			number: parseNumber(heading.label)
+			number: parseNumber(heading.label),
 		}))
 		.filter((heading) => heading.number !== undefined) as Array<Heading & { number: number }>;
 	const sequenceStart = expectedCount ? findLastCompleteSequence(headings, expectedCount) : 0;
@@ -354,7 +359,7 @@ function splitBookBlocks(text: string, expectedCount?: number): Array<{ number: 
 		const next = sequence[index + 1];
 		return {
 			number: heading.number,
-			body: text.slice(heading.end, next?.index ?? text.length).trim()
+			body: text.slice(heading.end, next?.index ?? text.length).trim(),
 		};
 	});
 }
@@ -384,7 +389,7 @@ function splitSequentialPassages(text: string, label: string, expectedCount?: nu
 		return {
 			number: marker.number,
 			title,
-			body
+			body,
 		};
 	});
 }
@@ -401,7 +406,7 @@ function findSequentialMarkers(text: string): Array<{ number: number; index: num
 			markers.push({
 				number,
 				index: match.index,
-				end: markerPattern.lastIndex
+				end: markerPattern.lastIndex,
 			});
 		}
 	}
@@ -410,9 +415,7 @@ function findSequentialMarkers(text: string): Array<{ number: number; index: num
 }
 
 function splitNamedWorks(text: string, works: WorkSlice[]): Map<string, string> {
-	const headings = works
-		.flatMap((work) => findTitleHeadings(text, work))
-		.sort((a, b) => a.index - b.index);
+	const headings = works.flatMap((work) => findTitleHeadings(text, work)).sort((a, b) => a.index - b.index);
 	const slices = new Map<string, string>();
 
 	for (const [index, heading] of headings.entries()) {
@@ -433,7 +436,7 @@ function findTitleHeadings(text: string, work: WorkSlice): Array<{ work: WorkSli
 		headings.push({
 			work,
 			index: match.index,
-			end: match.index + match[0].length
+			end: match.index + match[0].length,
 		});
 	}
 
@@ -454,7 +457,7 @@ function findHeadings(text: string, pattern: RegExp): Heading[] {
 		headings.push({
 			label: match[1],
 			index: match.index,
-			end: match.index + match[0].length
+			end: match.index + match[0].length,
 		});
 	}
 
@@ -465,7 +468,9 @@ function findLastCompleteSequence(headings: Array<{ number: number }>, expectedC
 	let sequenceStart = -1;
 
 	for (let index = 0; index <= headings.length - expectedCount; index++) {
-		const isComplete = headings.slice(index, index + expectedCount).every((heading, offset) => heading.number === offset + 1);
+		const isComplete = headings
+			.slice(index, index + expectedCount)
+			.every((heading, offset) => heading.number === offset + 1);
 
 		if (isComplete) {
 			sequenceStart = index;
@@ -490,7 +495,7 @@ function extractInlineTitle(text: string): { title?: string; body: string } {
 
 	return {
 		title: cleanupText(trimmed),
-		body: rest.join("\n\n")
+		body: rest.join("\n\n"),
 	};
 }
 
@@ -548,7 +553,7 @@ function wordToNumber(value: string): number | undefined {
 		["XI", 11],
 		["TWELFTH", 12],
 		["TWELVE", 12],
-		["XII", 12]
+		["XII", 12],
 	]);
 
 	return words.get(normalized);
@@ -566,7 +571,7 @@ function romanToInteger(value: string): number | undefined {
 		["L", 50],
 		["C", 100],
 		["D", 500],
-		["M", 1000]
+		["M", 1000],
 	]);
 	const characters = value.toUpperCase().split("");
 	let total = 0;

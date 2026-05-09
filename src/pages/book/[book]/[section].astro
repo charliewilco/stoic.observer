@@ -11,9 +11,7 @@ type SectionLink = {
 
 export async function getStaticPaths() {
 	const entries = await getCollection("meditations");
-	const sorted = entries.sort(
-		(a, b) => a.data.book - b.data.book || a.data.section - b.data.section,
-	);
+	const sorted = entries.sort((a, b) => a.data.book - b.data.book || a.data.section - b.data.section);
 
 	return sorted.map((entry, index) => ({
 		params: {

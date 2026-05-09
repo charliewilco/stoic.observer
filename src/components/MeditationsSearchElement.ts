@@ -237,9 +237,7 @@ export default class MeditationsSearch extends LitElement {
 											<li>
 												<a href=${result.url} data-result-index=${index}>
 													<span class="result-title">${this.resultTitle(result)}</span>
-													<span class="excerpt"
-														>${unsafeHTML(this.safeExcerpt(result.excerpt))}</span
-													>
+													<span class="excerpt">${unsafeHTML(this.safeExcerpt(result.excerpt))}</span>
 												</a>
 											</li>
 										`,
@@ -315,9 +313,7 @@ export default class MeditationsSearch extends LitElement {
 		event.preventDefault();
 
 		const nextIndex =
-			event.key === "ArrowDown"
-				? Math.min(currentIndex + 1, links.length - 1)
-				: Math.max(currentIndex - 1, 0);
+			event.key === "ArrowDown" ? Math.min(currentIndex + 1, links.length - 1) : Math.max(currentIndex - 1, 0);
 
 		links[nextIndex]?.focus();
 	}
