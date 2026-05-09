@@ -16,7 +16,9 @@
 		"deploy:cf": "wrangler deploy"
 	},
 	"dependencies": {
-		"astro": "^6.3.0",
+		"@astrojs/cloudflare": "^13.5.0",
+		"@astrojs/sitemap": "3.7.2",
+		"astro": "^6.3.1",
 		"lit": "^3.3.2"
 	},
 	"devDependencies": {
