@@ -1,7 +1,8 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import MeditationsSearch from "../components/MeditationsSearch.astro";
 import SideNavigation from "../components/SideNavigation.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -23,17 +24,11 @@ const initialSearchQuery = Astro.url.pathname.startsWith("/search/")
 		<div class="app-shell">
 			<SideNavigation />
 			<div class="content-shell">
-				<header class="site-header">
-					<div class="header-search">
-						<MeditationsSearch initialQuery={initialSearchQuery} />
-					</div>
-				</header>
+				<SiteHeader />
 				<main id="main">
 					<slot />
 				</main>
-				<footer class="site-footer">
-					<p>Public-domain practical Stoic texts, built for quiet reading.</p>
-				</footer>
+				<SiteFooter />
 			</div>
 		</div>
 	</body>

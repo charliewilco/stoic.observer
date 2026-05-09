@@ -1,31 +1,49 @@
+// @ts-check
+
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-type Passage = {
-	number: number;
-	title?: string;
-	body: string;
-};
+/**
+ * @typedef {object} Passage
+ * @property {number} number
+ * @property {string} [title]
+ * @property {string} body
+ */
 
-type Chapter = {
-	book: number;
-	chapter: number;
-	title?: string;
-	body: string;
-};
+/**
+ * @typedef {object} WorkSlice
+ * @property {string} slug
+ * @property {string} title
+ * @property {"flat" | "multi"} kind
+ * @property {number} [bookCount]
+ */
 
-type WorkSlice = {
-	slug: string;
-	title: string;
-	kind: "flat" | "multi";
-	bookCount?: number;
-};
+/**
+ * @typedef {object} FlatSourceOptions
+ * @property {string} sourceFile
+ * @property {string} collection
+ * @property {string} label
+ * @property {"number" | "section"} frontmatterNumberKey
+ * @property {string} [outputCollectionRoot]
+ * @property {number} [expectedCount]
+ * @property {number} [filePadding]
+ * @property {boolean} [placeholderIfMissing]
+ * @property {string} [placeholderTitle]
+ */
+
+/**
+ * @typedef {object} Heading
+ * @property {string} label
+ * @property {number} index
+ * @property {number} end
+ */
 
 const root = process.cwd();
 const sourcesRoot = path.join(root, "scripts", "sources");
 const contentRoot = path.join(root, "src", "content");
 
-const senecaWorks: WorkSlice[] = [
+/** @type {WorkSlice[]} */
+const senecaWorks = [
 	{ slug: "on-providence", title: "On Providence", kind: "flat" },
 	{
 		slug: "on-the-firmness-of-the-wise-man",
@@ -83,7 +101,8 @@ await parseFlatSource({
 	placeholderTitle: "TODO: Fragment source needed",
 });
 
-async function parseMeditations(): Promise<void> {
+/** @returns {Promise<void>} */
+async function parseMeditations() {
 	const sourcePath = path.join(root, "scripts", "source.txt");
 	const rawSource = await readOptional(sourcePath);
 
@@ -117,17 +136,11 @@ async function parseMeditations(): Promise<void> {
 	console.log(`Parsed Meditations: ${books.length} books.`);
 }
 
-async function parseFlatSource(options: {
-	sourceFile: string;
-	collection: string;
-	label: string;
-	frontmatterNumberKey: "number" | "section";
-	outputCollectionRoot?: string;
-	expectedCount?: number;
-	filePadding?: number;
-	placeholderIfMissing?: boolean;
-	placeholderTitle?: string;
-}): Promise<void> {
+/**
+ * @param {FlatSourceOptions} options
+ * @returns {Promise<void>}
+ */
+async function parseFlatSource(options) {
 	const sourcePath = path.join(sourcesRoot, options.sourceFile);
 	const rawSource = await readOptional(sourcePath);
 	const outputRoot = path.join(contentRoot, options.outputCollectionRoot ?? options.collection);
@@ -164,15 +177,11 @@ async function parseFlatSource(options: {
 	console.log(`Parsed ${options.label}: ${passages.length}${expectation} passages.`);
 }
 
-async function writeFlatPlaceholders(options: {
-	collection: string;
-	label: string;
-	frontmatterNumberKey: "number" | "section";
-	outputCollectionRoot?: string;
-	expectedCount?: number;
-	filePadding?: number;
-	placeholderTitle?: string;
-}): Promise<void> {
+/**
+ * @param {FlatSourceOptions} options
+ * @returns {Promise<void>}
+ */
+async function writeFlatPlaceholders(options) {
 	const outputRoot = path.join(contentRoot, options.outputCollectionRoot ?? options.collection);
 	const directory = path.join(contentRoot, options.collection);
 	const count = options.expectedCount ?? 1;
@@ -194,7 +203,8 @@ async function writeFlatPlaceholders(options: {
 	console.log(`Created ${count} placeholder passages for ${options.label}.`);
 }
 
-async function parseDiscourses(): Promise<void> {
+/** @returns {Promise<void>} */
+async function parseDiscourses() {
 	const rawSource = await readOptional(path.join(sourcesRoot, "discourses-long.txt"));
 
 	if (!rawSource) {
@@ -230,7 +240,8 @@ async function parseDiscourses(): Promise<void> {
 	console.log(`Parsed Discourses: ${books.length} books.`);
 }
 
-async function parseSenecaEssays(): Promise<void> {
+/** @returns {Promise<void>} */
+async function parseSenecaEssays() {
 	const rawSource = await readOptional(path.join(sourcesRoot, "seneca-essays-stewart.txt"));
 
 	if (!rawSource) {
@@ -292,11 +303,15 @@ async function parseSenecaEssays(): Promise<void> {
 	}
 }
 
-async function readOptional(filePath: string): Promise<string | undefined> {
+/**
+ * @param {string} filePath
+ * @returns {Promise<string | undefined>}
+ */
+async function readOptional(filePath) {
 	try {
 		return await readFile(filePath, "utf8");
 	} catch (error) {
-		if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+		if (isNodeError(error) && error.code === "ENOENT") {
 			return undefined;
 		}
 
@@ -304,17 +319,39 @@ async function readOptional(filePath: string): Promise<string | undefined> {
 	}
 }
 
-async function resetDirectory(directory: string): Promise<void> {
+/**
+ * @param {unknown} error
+ * @returns {error is NodeJS.ErrnoException}
+ */
+function isNodeError(error) {
+	return error instanceof Error && "code" in error;
+}
+
+/**
+ * @param {string} directory
+ * @returns {Promise<void>}
+ */
+async function resetDirectory(directory) {
 	await rm(directory, { force: true, recursive: true });
 	await mkdir(directory, { recursive: true });
 }
 
-async function writeMarkdown(filePath: string, frontmatter: string[], body: string): Promise<void> {
+/**
+ * @param {string} filePath
+ * @param {string[]} frontmatter
+ * @param {string} body
+ * @returns {Promise<void>}
+ */
+async function writeMarkdown(filePath, frontmatter, body) {
 	await mkdir(path.dirname(filePath), { recursive: true });
 	await writeFile(filePath, ["---", ...frontmatter, "---", "", cleanupText(body), ""].join("\n"), "utf8");
 }
 
-function stripGutenbergMatter(text: string): string {
+/**
+ * @param {string} text
+ * @returns {string}
+ */
+function stripGutenbergMatter(text) {
 	const normalized = text.replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n");
 	const startMarker = /^\*\*\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK .+ \*\*\*$/im;
 	const endMarker = /^\*\*\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK .+ \*\*\*$/im;
@@ -326,13 +363,19 @@ function stripGutenbergMatter(text: string): string {
 	return normalized.slice(start, end).trim();
 }
 
-function splitMeditationsBooks(text: string): string[] {
-	const headings = findHeadings(text, /^\s*(?:THE\s+)?([A-Z]+)\s+BOOK\s*$/gim)
-		.map((heading) => ({
-			...heading,
-			number: wordToNumber(heading.label),
-		}))
-		.filter((heading) => heading.number !== undefined) as Array<Heading & { number: number }>;
+/**
+ * @param {string} text
+ * @returns {string[]}
+ */
+function splitMeditationsBooks(text) {
+	const headings = /** @type {Array<Heading & { number: number }>} */ (
+		findHeadings(text, /^\s*(?:THE\s+)?([A-Z]+)\s+BOOK\s*$/gim)
+			.map((heading) => ({
+				...heading,
+				number: wordToNumber(heading.label),
+			}))
+			.filter((heading) => heading.number !== undefined)
+	);
 	const sequenceStart = findLastCompleteSequence(headings, 12);
 	const sequence = headings.slice(sequenceStart, sequenceStart + 12);
 
@@ -342,16 +385,20 @@ function splitMeditationsBooks(text: string): string[] {
 	});
 }
 
-function splitBookBlocks(text: string, expectedCount?: number): Array<{ number: number; body: string }> {
-	const headings = findHeadings(
-		text,
-		/^\s*(?:BOOK|LIBER)\s+([IVXLCDM]+|\d+|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN)\.?\s*$/gim,
-	)
-		.map((heading) => ({
-			...heading,
-			number: parseNumber(heading.label),
-		}))
-		.filter((heading) => heading.number !== undefined) as Array<Heading & { number: number }>;
+/**
+ * @param {string} text
+ * @param {number} [expectedCount]
+ * @returns {Array<{ number: number; body: string }>}
+ */
+function splitBookBlocks(text, expectedCount) {
+	const headings = /** @type {Array<Heading & { number: number }>} */ (
+		findHeadings(text, /^\s*(?:BOOK|LIBER)\s+([IVXLCDM]+|\d+|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN)\.?\s*$/gim)
+			.map((heading) => ({
+				...heading,
+				number: parseNumber(heading.label),
+			}))
+			.filter((heading) => heading.number !== undefined)
+	);
 	const sequenceStart = expectedCount ? findLastCompleteSequence(headings, expectedCount) : 0;
 	const sequence = expectedCount ? headings.slice(sequenceStart, sequenceStart + expectedCount) : headings;
 
@@ -364,7 +411,13 @@ function splitBookBlocks(text: string, expectedCount?: number): Array<{ number: 
 	});
 }
 
-function splitSequentialPassages(text: string, label: string, expectedCount?: number): Passage[] {
+/**
+ * @param {string} text
+ * @param {string} label
+ * @param {number} [expectedCount]
+ * @returns {Passage[]}
+ */
+function splitSequentialPassages(text, label, expectedCount) {
 	const allMarkers = findSequentialMarkers(text);
 	let sequenceStart = 0;
 
@@ -394,10 +447,16 @@ function splitSequentialPassages(text: string, label: string, expectedCount?: nu
 	});
 }
 
-function findSequentialMarkers(text: string): Array<{ number: number; index: number; end: number }> {
+/**
+ * @param {string} text
+ * @returns {Array<{ number: number; index: number; end: number }>}
+ */
+function findSequentialMarkers(text) {
 	const markerPattern = /^\s*(?:CHAPTER\s+)?([IVXLCDM]+|\d+)\.?\s+/gim;
-	const markers: Array<{ number: number; index: number; end: number }> = [];
-	let match: RegExpExecArray | null;
+	/** @type {Array<{ number: number; index: number; end: number }>} */
+	const markers = [];
+	/** @type {RegExpExecArray | null} */
+	let match;
 
 	while ((match = markerPattern.exec(text)) !== null) {
 		const number = parseNumber(match[1]);
@@ -414,9 +473,14 @@ function findSequentialMarkers(text: string): Array<{ number: number; index: num
 	return markers;
 }
 
-function splitNamedWorks(text: string, works: WorkSlice[]): Map<string, string> {
+/**
+ * @param {string} text
+ * @param {WorkSlice[]} works
+ * @returns {Map<string, string>}
+ */
+function splitNamedWorks(text, works) {
 	const headings = works.flatMap((work) => findTitleHeadings(text, work)).sort((a, b) => a.index - b.index);
-	const slices = new Map<string, string>();
+	const slices = new Map();
 
 	for (const [index, heading] of headings.entries()) {
 		const next = headings[index + 1];
@@ -426,11 +490,18 @@ function splitNamedWorks(text: string, works: WorkSlice[]): Map<string, string> 
 	return slices;
 }
 
-function findTitleHeadings(text: string, work: WorkSlice): Array<{ work: WorkSlice; index: number; end: number }> {
+/**
+ * @param {string} text
+ * @param {WorkSlice} work
+ * @returns {Array<{ work: WorkSlice; index: number; end: number }>}
+ */
+function findTitleHeadings(text, work) {
 	const escapedTitle = work.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\\ /g, "\\s+");
 	const pattern = new RegExp(`^\\s*(?:${escapedTitle}|${escapedTitle.toUpperCase()})\\s*$`, "gim");
-	const headings: Array<{ work: WorkSlice; index: number; end: number }> = [];
-	let match: RegExpExecArray | null;
+	/** @type {Array<{ work: WorkSlice; index: number; end: number }>} */
+	const headings = [];
+	/** @type {RegExpExecArray | null} */
+	let match;
 
 	while ((match = pattern.exec(text)) !== null) {
 		headings.push({
@@ -443,15 +514,16 @@ function findTitleHeadings(text: string, work: WorkSlice): Array<{ work: WorkSli
 	return headings;
 }
 
-type Heading = {
-	label: string;
-	index: number;
-	end: number;
-};
-
-function findHeadings(text: string, pattern: RegExp): Heading[] {
-	const headings: Heading[] = [];
-	let match: RegExpExecArray | null;
+/**
+ * @param {string} text
+ * @param {RegExp} pattern
+ * @returns {Heading[]}
+ */
+function findHeadings(text, pattern) {
+	/** @type {Heading[]} */
+	const headings = [];
+	/** @type {RegExpExecArray | null} */
+	let match;
 
 	while ((match = pattern.exec(text)) !== null) {
 		headings.push({
@@ -464,7 +536,12 @@ function findHeadings(text: string, pattern: RegExp): Heading[] {
 	return headings;
 }
 
-function findLastCompleteSequence(headings: Array<{ number: number }>, expectedCount: number): number {
+/**
+ * @param {Array<{ number: number }>} headings
+ * @param {number} expectedCount
+ * @returns {number}
+ */
+function findLastCompleteSequence(headings, expectedCount) {
 	let sequenceStart = -1;
 
 	for (let index = 0; index <= headings.length - expectedCount; index++) {
@@ -484,7 +561,11 @@ function findLastCompleteSequence(headings: Array<{ number: number }>, expectedC
 	return sequenceStart;
 }
 
-function extractInlineTitle(text: string): { title?: string; body: string } {
+/**
+ * @param {string} text
+ * @returns {{ title?: string; body: string }}
+ */
+function extractInlineTitle(text) {
 	const [firstParagraph, ...rest] = text.split(/\n{2,}/);
 	const trimmed = firstParagraph.trim();
 	const looksLikeTitle = /^[A-Z0-9 ,;:'"!?()\-]+$/.test(trimmed) && trimmed.length <= 120 && rest.length > 0;
@@ -499,7 +580,11 @@ function extractInlineTitle(text: string): { title?: string; body: string } {
 	};
 }
 
-function cleanupText(text: string): string {
+/**
+ * @param {string} text
+ * @returns {string}
+ */
+function cleanupText(text) {
 	return text
 		.split(/\n{2,}/)
 		.map((paragraph) => paragraph.replace(/\s+/g, " ").trim())
@@ -507,7 +592,11 @@ function cleanupText(text: string): string {
 		.join("\n\n");
 }
 
-function parseNumber(value: string): number | undefined {
+/**
+ * @param {string} value
+ * @returns {number | undefined}
+ */
+function parseNumber(value) {
 	if (/^\d+$/.test(value)) {
 		return Number(value);
 	}
@@ -515,9 +604,13 @@ function parseNumber(value: string): number | undefined {
 	return wordToNumber(value) ?? romanToInteger(value);
 }
 
-function wordToNumber(value: string): number | undefined {
+/**
+ * @param {string} value
+ * @returns {number | undefined}
+ */
+function wordToNumber(value) {
 	const normalized = value.toUpperCase();
-	const words = new Map<string, number>([
+	const words = new Map([
 		["FIRST", 1],
 		["ONE", 1],
 		["I", 1],
@@ -559,12 +652,16 @@ function wordToNumber(value: string): number | undefined {
 	return words.get(normalized);
 }
 
-function romanToInteger(value: string): number | undefined {
+/**
+ * @param {string} value
+ * @returns {number | undefined}
+ */
+function romanToInteger(value) {
 	if (!/^[IVXLCDM]+$/i.test(value)) {
 		return undefined;
 	}
 
-	const values = new Map<string, number>([
+	const values = new Map([
 		["I", 1],
 		["V", 5],
 		["X", 10],
@@ -585,6 +682,11 @@ function romanToInteger(value: string): number | undefined {
 	return total;
 }
 
-function pad(value: number, length = 2): string {
+/**
+ * @param {number} value
+ * @param {number} [length]
+ * @returns {string}
+ */
+function pad(value, length = 2) {
 	return String(value).padStart(length, "0");
 }

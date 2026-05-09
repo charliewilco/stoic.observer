@@ -1,0 +1,29 @@
+---
+const initialSearchQuery = Astro.url.pathname.startsWith("/search/")
+	? (Astro.url.searchParams.get("q") ?? undefined)
+	: undefined;
+---
+
+<header class="site-header">
+	<a class="site-title" href="/">stoic.observer</a>
+
+	<div class="header-search">
+		<meditations-search initial-query={initialSearchQuery}>
+			<form class="search-fallback" action="/search" method="get" role="search">
+				<label class="visually-hidden" for="stoic-search-fallback">Search the Stoic canon</label>
+				<input
+					id="stoic-search-fallback"
+					name="q"
+					type="search"
+					autocomplete="off"
+					value={initialSearchQuery}
+					placeholder="Search the Stoic canon"
+				/>
+			</form>
+		</meditations-search>
+	</div>
+</header>
+
+<script>
+	import "./MeditationsSearchElement";
+</script>

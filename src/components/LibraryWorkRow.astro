@@ -1,10 +1,10 @@
 ---
 interface Props {
 	title: string;
-	author: string;
+	author?: string;
 	href: string;
 	meta: string;
-	summary: string;
+	summary?: string;
 }
 
 const { href, title, summary, author, meta } = Astro.props;
@@ -14,7 +14,6 @@ const { href, title, summary, author, meta } = Astro.props;
 	<span class="row-main">
 		<span class="row-title">{title}</span>
 		<span class="row-author">{author}</span>
-
 		<span class="row-summary">{summary}</span>
 	</span>
 	<span class="row-meta">

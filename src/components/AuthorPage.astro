@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import { authorPages, authorWorks, works as allWorks, type AuthorSlug } from "../lib/works";
+import LibraryWorkRow from "./LibraryWorkRow.astro";
 
 interface Props {
 	author: AuthorSlug;
@@ -39,19 +40,7 @@ const works = authorWorks(page.slug).map((work) => {
 	<nav aria-label={`${page.name} works`} class="library-list">
 		{
 			works.length > 0 ? (
-				works.map((work) => (
-					<a class="library-row" href={work.href}>
-						<span class="row-main">
-							<span class="row-title">{work.title}</span>
-							<span class="row-summary">
-								{work.meta} by {page.name}
-							</span>
-						</span>
-						<span class="row-meta">
-							<span>{work.meta}</span>
-						</span>
-					</a>
-				))
+				works.map((work) => <LibraryWorkRow title={work.title} meta={work.meta} href={work.href} />)
 			) : (
 				<p>No works are available yet.</p>
 			)

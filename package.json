@@ -8,7 +8,7 @@
 		"build": "astro build",
 		"postbuild": "pagefind --site dist",
 		"preview": "astro preview",
-		"parse": "tsx scripts/parse-gutenberg.ts",
+		"parse": "node scripts/parse-gutenberg.mjs",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"preview:cf": "npm run build && wrangler dev",
