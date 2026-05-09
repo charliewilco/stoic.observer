@@ -1,0 +1,13 @@
+---
+interface Props {
+	initialQuery?: string;
+}
+
+const { initialQuery } = Astro.props;
+---
+
+<meditations-search initial-query={initialQuery}></meditations-search>
+
+<script>
+	import "./MeditationsSearchElement";
+</script>

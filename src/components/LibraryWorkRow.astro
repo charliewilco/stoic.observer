@@ -1,0 +1,23 @@
+---
+interface Props {
+	title: string;
+	author: string;
+	href: string;
+	meta: string;
+	summary: string;
+}
+
+const { href, title, summary, author, meta } = Astro.props;
+---
+
+<a class="library-row" href={href}>
+	<span class="row-main">
+		<span class="row-title">{title}</span>
+		<span class="row-author">{author}</span>
+
+		<span class="row-summary">{summary}</span>
+	</span>
+	<span class="row-meta">
+		<span>{meta}</span>
+	</span>
+</a>

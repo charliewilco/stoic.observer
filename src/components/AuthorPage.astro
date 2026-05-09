@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { authorPages, authorWorks, type AuthorSlug } from "../lib/works";
+import { authorPages, authorWorks, works as allWorks, type AuthorSlug } from "../lib/works";
 
 interface Props {
 	author: AuthorSlug;
@@ -12,21 +12,52 @@ if (!page) {
 	throw new Error(`Unknown author: ${Astro.props.author}`);
 }
 
-const works = authorWorks(page.slug);
+const works = authorWorks(page.slug).map((work) => {
+	const canonicalWork = allWorks.find((candidate) => `/${candidate.slug}/` === work.href);
+	const meta = canonicalWork
+		? canonicalWork.kind === "flat"
+			? canonicalWork.expectedCount
+				? `${canonicalWork.expectedCount} ${canonicalWork.itemPlural.toLowerCase()}`
+				: canonicalWork.itemPlural
+			: `${canonicalWork.bookCount} books`
+		: "12 books";
+
+	return {
+		...work,
+		meta,
+	};
+});
 ---
 
-<Base title={`${page.name} | Stoic Reader`} description={`Works by ${page.name} in the Stoic Reader.`}>
-	<h1>{page.name}</h1>
-	<p>{page.lede}</p>
+<Base
+	title={`${page.name} | Stoic Reader`}
+	description={`Works by ${page.name} in the Stoic Reader.`}
+>
+	<header class="library-header">
+		<p class="page-kicker">Author</p>
+		<h1>{page.name}</h1>
+		<p>{page.lede}</p>
+	</header>
 
-	<nav aria-label={`${page.name} works`}>
-		<h2>Works</h2>
-		{works.length > 0 ? (
-			<ul>
-				{works.map((work) => <li><a href={work.href}>{work.title}</a></li>)}
-			</ul>
-		) : (
-			<p>No works are available yet.</p>
-		)}
+	<nav aria-label={`${page.name} works`} class="library-list">
+		{
+			works.length > 0 ? (
+				works.map((work) => (
+					<a class="library-row" href={work.href}>
+						<span class="row-main">
+							<span class="row-title">{work.title}</span>
+							<span class="row-summary">
+								{work.meta} by {page.name}
+							</span>
+						</span>
+						<span class="row-meta">
+							<span>{work.meta}</span>
+						</span>
+					</a>
+				))
+			) : (
+				<p>No works are available yet.</p>
+			)
+		}
 	</nav>
 </Base>

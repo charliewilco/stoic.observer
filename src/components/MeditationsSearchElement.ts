@@ -33,18 +33,20 @@ export default class MeditationsSearch extends LitElement {
 		initialQuery: { type: String, attribute: "initial-query" },
 		queryText: { state: true },
 		results: { state: true },
-		status: { state: true }
+		status: { state: true },
 	};
 
 	static styles = css`
 		:host {
 			display: block;
 			color: var(--color-text);
+			font-family: var(--font-sans);
 		}
 
 		form {
+			position: relative;
 			display: grid;
-			gap: 0.75rem;
+			gap: 0.85rem;
 		}
 
 		label.visually-hidden {
@@ -62,26 +64,56 @@ export default class MeditationsSearch extends LitElement {
 		input {
 			width: 100%;
 			box-sizing: border-box;
-			border: 1px solid var(--color-border-strong);
+			border: 0;
 			border-radius: 0;
-			background: var(--color-surface);
+			border-bottom: 1px solid var(--color-border-strong);
+			background: transparent;
 			color: var(--color-text);
-			font: inherit;
-			padding: 0.68rem 0.75rem;
-			box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-text) 7%, transparent);
+			font: 500 1rem/1.4 var(--font-sans);
+			padding: 0.7rem 0 0.72rem 2rem;
+			box-shadow: none;
 			appearance: none;
+		}
+
+		input::placeholder {
+			color: var(--color-muted);
+			opacity: 0.72;
 		}
 
 		input:focus-visible,
 		a:focus-visible {
-			outline: 3px solid var(--color-focus);
+			outline: 2px solid var(--color-focus);
 			outline-offset: 3px;
+		}
+
+		form::before {
+			content: "";
+			position: absolute;
+			width: 1rem;
+			height: 1rem;
+			margin-top: 0.82rem;
+			border: 2px solid var(--color-muted);
+			border-radius: 50%;
+			pointer-events: none;
+		}
+
+		form::after {
+			content: "";
+			position: absolute;
+			width: 0.52rem;
+			height: 2px;
+			margin-top: 1.78rem;
+			margin-left: 0.82rem;
+			background: var(--color-muted);
+			transform: rotate(45deg);
+			transform-origin: left center;
+			pointer-events: none;
 		}
 
 		p {
 			margin: 0;
 			color: var(--color-muted);
-			font-size: 0.86rem;
+			font-size: 0.82rem;
 			line-height: 1.45;
 		}
 
@@ -89,7 +121,7 @@ export default class MeditationsSearch extends LitElement {
 			list-style: none;
 			display: grid;
 			gap: 0;
-			padding: 0.4rem 0 0;
+			padding: 0.45rem 0 0;
 			margin: 0;
 			border-top: 1px solid var(--color-border);
 			max-height: min(28rem, 62vh);
@@ -99,7 +131,7 @@ export default class MeditationsSearch extends LitElement {
 		a {
 			display: block;
 			color: inherit;
-			padding: 0.85rem 0;
+			padding: 0.9rem 0;
 			text-decoration: none;
 			border-bottom: 1px solid var(--color-border);
 		}
@@ -111,7 +143,7 @@ export default class MeditationsSearch extends LitElement {
 		.result-title {
 			display: block;
 			font-weight: 700;
-			font-size: 0.92rem;
+			font-size: 0.9rem;
 			line-height: 1.35;
 			margin-bottom: 0.25rem;
 		}
@@ -119,7 +151,8 @@ export default class MeditationsSearch extends LitElement {
 		.excerpt {
 			display: block;
 			color: var(--color-muted);
-			font-size: 0.88rem;
+			font-family: var(--font-serif);
+			font-size: 0.9rem;
 			line-height: 1.55;
 		}
 
@@ -204,10 +237,12 @@ export default class MeditationsSearch extends LitElement {
 											<li>
 												<a href=${result.url} data-result-index=${index}>
 													<span class="result-title">${this.resultTitle(result)}</span>
-													<span class="excerpt">${unsafeHTML(this.safeExcerpt(result.excerpt))}</span>
+													<span class="excerpt"
+														>${unsafeHTML(this.safeExcerpt(result.excerpt))}</span
+													>
 												</a>
 											</li>
-										`
+										`,
 									)}
 								</ul>
 							`
@@ -369,4 +404,6 @@ declare global {
 	}
 }
 
-customElements.define("meditations-search", MeditationsSearch);
+if (!customElements.get("meditations-search")) {
+	customElements.define("meditations-search", MeditationsSearch);
+}

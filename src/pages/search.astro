@@ -1,17 +1,14 @@
 ---
-import MeditationsSearch from "../components/MeditationsSearch";
+import MeditationsSearch from "../components/MeditationsSearch.astro";
 import Base from "../layouts/Base.astro";
 
 const query = Astro.url.searchParams.get("q") ?? "";
 const title = query ? `Search for "${query}" | Meditations Reader` : "Search | Meditations Reader";
 ---
 
-<Base
-	title={title}
-	description="Search Marcus Aurelius' Meditations by book and section."
->
+<Base title={title} description="Search Marcus Aurelius' Meditations by book and section.">
 	<h1>Search</h1>
 	<p>Search the text of <cite>Meditations</cite> by word or phrase.</p>
 
-	<MeditationsSearch initialQuery={query} client:load />
+	<MeditationsSearch initialQuery={query} />
 </Base>

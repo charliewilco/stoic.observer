@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import CanonPassage from "../components/CanonPassage.astro";
-import MeditationsSearch from "../components/MeditationsSearch";
+import MeditationsSearch from "../components/MeditationsSearch.astro";
 import Base from "../layouts/Base.astro";
 import {
 	bookPath,
@@ -14,7 +14,7 @@ import {
 	type CanonCollection,
 	type FlatWork,
 	type MultiBookWork,
-	type Work
+	type Work,
 } from "../lib/works";
 
 type CanonEntry = CollectionEntry<CanonCollection>;
@@ -71,7 +71,7 @@ export async function getStaticPaths() {
 
 		paths.push({
 			params: { canon: work.slug },
-			props: { pageType: "flat-index", work, entries }
+			props: { pageType: "flat-index", work, entries },
 		});
 
 		for (const [index, entry] of entries.entries()) {
@@ -82,8 +82,8 @@ export async function getStaticPaths() {
 					work,
 					entry,
 					previousEntry: entries[index - 1],
-					nextEntry: entries[index + 1]
-				}
+					nextEntry: entries[index + 1],
+				},
 			});
 		}
 	}
@@ -97,11 +97,12 @@ export async function getStaticPaths() {
 		}
 		const entries = sortEntries(work, rawEntries);
 		const books = [...new Set(entries.map((entry) => entry.data.book))].sort((a, b) => a - b);
-		const generatedBooks = books.length > 0 ? books : Array.from({ length: work.bookCount }, (_, index) => index + 1);
+		const generatedBooks =
+			books.length > 0 ? books : Array.from({ length: work.bookCount }, (_, index) => index + 1);
 
 		paths.push({
 			params: { canon: work.slug },
-			props: { pageType: "multi-index", work, entries, books: generatedBooks }
+			props: { pageType: "multi-index", work, entries, books: generatedBooks },
 		});
 
 		for (const book of generatedBooks) {
@@ -111,8 +112,8 @@ export async function getStaticPaths() {
 					pageType: "multi-book",
 					work,
 					book,
-					entries: entries.filter((entry) => entry.data.book === book)
-				}
+					entries: entries.filter((entry) => entry.data.book === book),
+				},
 			});
 		}
 
@@ -124,8 +125,8 @@ export async function getStaticPaths() {
 					work,
 					entry,
 					previousEntry: entries[index - 1],
-					nextEntry: entries[index + 1]
-				}
+					nextEntry: entries[index + 1],
+				},
 			});
 		}
 	}
@@ -161,7 +162,7 @@ function chapterTitle(work: Work, entry: CanonEntry): string {
 ---
 
 <Base title={title} description={description}>
-	<MeditationsSearch slot="header-search" client:visible />
+	<MeditationsSearch slot="header-search" />
 
 	{
 		page.pageType === "flat-index" && (
@@ -241,7 +242,9 @@ function chapterTitle(work: Work, entry: CanonEntry): string {
 		page.pageType === "multi-book" && (
 			<>
 				<article data-pagefind-ignore="all">
-					<h1>{page.work.title} · Book {page.book}</h1>
+					<h1>
+						{page.work.title} · Book {page.book}
+					</h1>
 					{page.entries.length > 0 ? (
 						page.entries.map((entry) => (
 							<CanonPassage entry={entry} work={page.work} headingLevel="h2" />
@@ -286,7 +289,9 @@ function chapterTitle(work: Work, entry: CanonEntry): string {
 					) : (
 						<span />
 					)}
-					<a href={bookPath(page.work, page.entry.data.book)}>Back to Book {page.entry.data.book}</a>
+					<a href={bookPath(page.work, page.entry.data.book)}>
+						Back to Book {page.entry.data.book}
+					</a>
 					{page.nextEntry ? (
 						<a href={sectionPath(page.work, page.nextEntry)}>
 							Next: {referenceLabel(page.work, page.nextEntry.data)}

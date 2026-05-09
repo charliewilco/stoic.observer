@@ -1,0 +1,45 @@
+---
+import { authorPages, works, type AuthorSlug } from "../lib/works";
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+	...authorPages.map((author) => ({
+		label: author.name,
+		href: `/${author.slug}/`,
+		kind: "author" as const,
+		author: author.slug,
+	})),
+	{ label: "Search", href: "/search/", kind: "search" as const },
+];
+
+function isCurrentItem(item: (typeof navItems)[number]): boolean {
+	if (item.kind === "search") {
+		return currentPath.startsWith("/search/");
+	}
+
+	return currentPath.startsWith(item.href) || isAuthorWorkPath(item.author, currentPath);
+}
+
+function isAuthorWorkPath(author: AuthorSlug, pathname: string): boolean {
+	if (author === "marcus" && pathname.startsWith("/book/")) {
+		return true;
+	}
+
+	return works
+		.filter((work) => work.authorSlug === author)
+		.some((work) => pathname === `/${work.slug}/` || pathname.startsWith(`/${work.slug}/`));
+}
+---
+
+<aside class="site-sidebar">
+	<a class="site-title" href="/">stoic.observer</a>
+	<nav aria-label="Primary navigation" class="site-nav">
+		{
+			navItems.map((item) => (
+				<a href={item.href} aria-current={isCurrentItem(item) ? "page" : undefined}>
+					{item.label}
+				</a>
+			))
+		}
+	</nav>
+</aside>

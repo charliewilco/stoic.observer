@@ -1,4 +1,6 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
+import SideNavigation from "../components/SideNavigation.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -12,31 +14,32 @@ const hasHeaderSearch = Astro.slots.has("header-search");
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content={description} />
-		<title>{title}</title>
-	</head>
+	<BaseHead title={title} description={description} />
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
-		<header class="site-header">
-			<nav aria-label="Primary navigation">
-				<a href="/">stoic.observer</a>
-			</nav>
-			{
-				hasHeaderSearch && (
-					<div class="floating-search">
-						<slot name="header-search" />
-					</div>
-				)
-			}
-		</header>
-		<main id="main">
-			<slot />
-		</main>
-		<footer class="site-footer">
-			<p>Public-domain practical Stoic texts, built for quiet reading.</p>
-		</footer>
+		<div class="app-shell">
+			<SideNavigation />
+			<div class="content-shell">
+				<header class="site-header">
+					{
+						hasHeaderSearch ? (
+							<div class="header-search">
+								<slot name="header-search" />
+							</div>
+						) : (
+							<a class="header-search-link" href="/search/">
+								Search the Stoic canon
+							</a>
+						)
+					}
+				</header>
+				<main id="main">
+					<slot />
+				</main>
+				<footer class="site-footer">
+					<p>Public-domain practical Stoic texts, built for quiet reading.</p>
+				</footer>
+			</div>
+		</div>
 	</body>
 </html>

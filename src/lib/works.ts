@@ -59,7 +59,7 @@ export const flatWorks: FlatWork[] = [
 		itemLabel: "Section",
 		itemPlural: "Sections",
 		referencePrefix: "§",
-		expectedCount: 53
+		expectedCount: 53,
 	},
 	{
 		kind: "flat",
@@ -71,7 +71,7 @@ export const flatWorks: FlatWork[] = [
 		itemLabel: "Letter",
 		itemPlural: "Letters",
 		referencePrefix: "Letter ",
-		expectedCount: 124
+		expectedCount: 124,
 	},
 	{
 		kind: "flat",
@@ -82,7 +82,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -93,7 +93,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -104,7 +104,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -115,7 +115,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -126,7 +126,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -137,7 +137,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -148,7 +148,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -159,7 +159,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -170,7 +170,7 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		referencePrefix: "§"
+		referencePrefix: "§",
 	},
 	{
 		kind: "flat",
@@ -182,7 +182,7 @@ export const flatWorks: FlatWork[] = [
 		itemLabel: "Lecture",
 		itemPlural: "Lectures",
 		referencePrefix: "Lecture ",
-		expectedCount: 21
+		expectedCount: 21,
 	},
 	{
 		kind: "flat",
@@ -193,8 +193,8 @@ export const flatWorks: FlatWork[] = [
 		authorSlug: "hierocles",
 		itemLabel: "Fragment",
 		itemPlural: "Fragments",
-		referencePrefix: "Fragment "
-	}
+		referencePrefix: "Fragment ",
+	},
 ];
 
 export const multiBookWorks: MultiBookWork[] = [
@@ -207,7 +207,7 @@ export const multiBookWorks: MultiBookWork[] = [
 		authorSlug: "epictetus",
 		itemLabel: "Chapter",
 		itemPlural: "Chapters",
-		bookCount: 4
+		bookCount: 4,
 	},
 	{
 		kind: "multi",
@@ -218,7 +218,7 @@ export const multiBookWorks: MultiBookWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		bookCount: 3
+		bookCount: 3,
 	},
 	{
 		kind: "multi",
@@ -229,7 +229,7 @@ export const multiBookWorks: MultiBookWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		bookCount: 2
+		bookCount: 2,
 	},
 	{
 		kind: "multi",
@@ -240,8 +240,8 @@ export const multiBookWorks: MultiBookWork[] = [
 		authorSlug: "seneca",
 		itemLabel: "Section",
 		itemPlural: "Sections",
-		bookCount: 7
-	}
+		bookCount: 7,
+	},
 ];
 
 export const works: Work[] = [...flatWorks, ...multiBookWorks];
@@ -254,28 +254,28 @@ export const authorPages: Array<{
 	{
 		slug: "marcus",
 		name: "Marcus Aurelius",
-		lede: "TODO: Add a concise biographical note for Marcus Aurelius."
+		lede: "Roman emperor and Stoic practitioner, writing private notes on attention, duty, mortality, and restraint.",
 	},
 	{
 		slug: "epictetus",
 		name: "Epictetus",
-		lede: "TODO: Add a concise biographical note for Epictetus."
+		lede: "Former slave and Stoic teacher whose surviving works focus on judgment, freedom, discipline, and what is ours to command.",
 	},
 	{
 		slug: "seneca",
 		name: "Seneca",
-		lede: "TODO: Add a concise biographical note for Seneca."
+		lede: "Roman statesman and essayist, direct and psychologically sharp on time, anger, grief, friendship, wealth, and death.",
 	},
 	{
 		slug: "musonius",
 		name: "Musonius Rufus",
-		lede: "TODO: Add a concise biographical note for Musonius Rufus."
+		lede: "Roman Stoic teacher concerned with daily practice, character, education, household life, and philosophical training.",
 	},
 	{
 		slug: "hierocles",
 		name: "Hierocles",
-		lede: "TODO: Add a concise biographical note for Hierocles."
-	}
+		lede: "Stoic philosopher best known for fragments on ethical development, self-perception, and widening circles of concern.",
+	},
 ];
 
 export function authorWorks(authorSlug: AuthorSlug): Array<{ title: string; href: string }> {
@@ -283,7 +283,7 @@ export function authorWorks(authorSlug: AuthorSlug): Array<{ title: string; href
 		.filter((work) => work.authorSlug === authorSlug)
 		.map((work) => ({
 			title: work.title,
-			href: `/${work.slug}/`
+			href: `/${work.slug}/`,
 		}));
 
 	if (authorSlug === "marcus") {
@@ -315,7 +315,10 @@ export function referenceLabel(work: Work, data: CollectionEntry<CanonCollection
 	return `Book ${passage.book} · ${work.itemLabel} ${passage.chapter}`;
 }
 
-export function sortEntries<T extends CollectionEntry<CanonCollection>>(work: Work, entries: T[]): T[] {
+export function sortEntries<T extends CollectionEntry<CanonCollection>>(
+	work: Work,
+	entries: T[],
+): T[] {
 	return entries.sort((a, b) => {
 		if (work.kind === "flat") {
 			return flatNumber(a.data) - flatNumber(b.data);
@@ -350,11 +353,14 @@ export function flatNumber(data: CollectionEntry<CanonCollection>["data"]): numb
 	throw new Error("Expected a flat-numbered entry.");
 }
 
-export function multiBookData(data: CollectionEntry<CanonCollection>["data"]): { book: number; chapter: number } {
+export function multiBookData(data: CollectionEntry<CanonCollection>["data"]): {
+	book: number;
+	chapter: number;
+} {
 	if ("book" in data && "chapter" in data) {
 		return {
 			book: data.book,
-			chapter: data.chapter
+			chapter: data.chapter,
 		};
 	}
 
