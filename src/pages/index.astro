@@ -1,6 +1,5 @@
 ---
 import LibraryWorkRow from "../components/LibraryWorkRow.astro";
-import MeditationsSearch from "../components/MeditationsSearch.astro";
 import Base from "../layouts/Base.astro";
 import { works } from "../lib/works";
 
@@ -48,8 +47,6 @@ const libraryWorks = [
 ---
 
 <Base title="stoic.observer" description="Read and search public-domain translations of practical Stoic texts.">
-	<MeditationsSearch slot="header-search" />
-
 	<header class="library-header">
 		<p class="page-kicker">Library</p>
 		<h1>All Works</h1>

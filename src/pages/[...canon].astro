@@ -1,7 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import CanonPassage from "../components/CanonPassage.astro";
-import MeditationsSearch from "../components/MeditationsSearch.astro";
 import Base from "../layouts/Base.astro";
 import {
 	bookPath,
@@ -161,8 +160,6 @@ function chapterTitle(work: Work, entry: CanonEntry): string {
 ---
 
 <Base title={title} description={description}>
-	<MeditationsSearch slot="header-search" />
-
 	{
 		page.pageType === "flat-index" && (
 			<>

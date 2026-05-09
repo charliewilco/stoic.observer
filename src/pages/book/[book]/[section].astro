@@ -1,6 +1,5 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import MeditationsSearch from "../../../components/MeditationsSearch.astro";
 import Section from "../../../components/Section.astro";
 import Base from "../../../layouts/Base.astro";
 
@@ -50,8 +49,6 @@ const { book, section } = entry.data;
 	title={`Book ${book} · Section ${section} | Meditations Reader`}
 	description={`Read Book ${book}, Section ${section} of Marcus Aurelius' Meditations.`}
 >
-	<MeditationsSearch slot="header-search" />
-
 	<article>
 		<Section entry={entry} headingLevel="h1" headingText={`Book ${book} · Section ${section}`} />
 	</article>

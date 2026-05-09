@@ -6,7 +6,19 @@ interface Props {
 const { initialQuery } = Astro.props;
 ---
 
-<meditations-search initial-query={initialQuery}></meditations-search>
+<meditations-search initial-query={initialQuery}>
+	<form class="search-fallback" action="/search" method="get" role="search">
+		<label class="visually-hidden" for="stoic-search-fallback">Search the Stoic canon</label>
+		<input
+			id="stoic-search-fallback"
+			name="q"
+			type="search"
+			autocomplete="off"
+			value={initialQuery}
+			placeholder="Search the Stoic canon"
+		/>
+	</form>
+</meditations-search>
 
 <script>
 	import "./MeditationsSearchElement";

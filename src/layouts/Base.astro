@@ -1,5 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import MeditationsSearch from "../components/MeditationsSearch.astro";
 import SideNavigation from "../components/SideNavigation.astro";
 import "../styles/global.css";
 
@@ -9,7 +10,9 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const hasHeaderSearch = Astro.slots.has("header-search");
+const initialSearchQuery = Astro.url.pathname.startsWith("/search/")
+	? (Astro.url.searchParams.get("q") ?? undefined)
+	: undefined;
 ---
 
 <!doctype html>
@@ -21,17 +24,9 @@ const hasHeaderSearch = Astro.slots.has("header-search");
 			<SideNavigation />
 			<div class="content-shell">
 				<header class="site-header">
-					{
-						hasHeaderSearch ? (
-							<div class="header-search">
-								<slot name="header-search" />
-							</div>
-						) : (
-							<a class="header-search-link" href="/search/">
-								Search the Stoic canon
-							</a>
-						)
-					}
+					<div class="header-search">
+						<MeditationsSearch initialQuery={initialSearchQuery} />
+					</div>
 				</header>
 				<main id="main">
 					<slot />

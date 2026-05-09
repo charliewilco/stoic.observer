@@ -46,7 +46,15 @@ export default class MeditationsSearch extends LitElement {
 		form {
 			position: relative;
 			display: grid;
-			gap: 0.85rem;
+			gap: 0;
+			overflow: hidden;
+			border: 1px solid color-mix(in srgb, var(--color-border-strong) 72%, transparent);
+			border-radius: 999px;
+			background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+			box-shadow:
+				0 18px 44px color-mix(in srgb, #000000 16%, transparent),
+				0 2px 9px color-mix(in srgb, #000000 8%, transparent);
+			backdrop-filter: blur(18px);
 		}
 
 		label.visually-hidden {
@@ -65,12 +73,12 @@ export default class MeditationsSearch extends LitElement {
 			width: 100%;
 			box-sizing: border-box;
 			border: 0;
-			border-radius: 0;
-			border-bottom: 1px solid var(--color-border-strong);
+			border-radius: 999px;
 			background: transparent;
 			color: var(--color-text);
 			font: 500 1rem/1.4 var(--font-sans);
-			padding: 0.7rem 0 0.72rem 2rem;
+			min-height: 2.95rem;
+			padding: 0.72rem 1.15rem 0.74rem 2.85rem;
 			box-shadow: none;
 			appearance: none;
 		}
@@ -91,7 +99,8 @@ export default class MeditationsSearch extends LitElement {
 			position: absolute;
 			width: 1rem;
 			height: 1rem;
-			margin-top: 0.82rem;
+			top: 0.95rem;
+			left: 1.05rem;
 			border: 2px solid var(--color-muted);
 			border-radius: 50%;
 			pointer-events: none;
@@ -102,8 +111,8 @@ export default class MeditationsSearch extends LitElement {
 			position: absolute;
 			width: 0.52rem;
 			height: 2px;
-			margin-top: 1.78rem;
-			margin-left: 0.82rem;
+			top: 1.92rem;
+			left: 1.86rem;
 			background: var(--color-muted);
 			transform: rotate(45deg);
 			transform-origin: left center;
@@ -112,16 +121,30 @@ export default class MeditationsSearch extends LitElement {
 
 		p {
 			margin: 0;
+			padding: 0.78rem 1.15rem 0.86rem;
 			color: var(--color-muted);
 			font-size: 0.82rem;
 			line-height: 1.45;
+			border-top: 1px solid var(--color-border);
+		}
+
+		p[data-empty] {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
 		}
 
 		ul {
 			list-style: none;
 			display: grid;
 			gap: 0;
-			padding: 0.45rem 0 0;
+			padding: 0;
 			margin: 0;
 			border-top: 1px solid var(--color-border);
 			max-height: min(28rem, 62vh);
@@ -131,7 +154,7 @@ export default class MeditationsSearch extends LitElement {
 		a {
 			display: block;
 			color: inherit;
-			padding: 0.9rem 0;
+			padding: 0.9rem 1.15rem;
 			text-decoration: none;
 			border-bottom: 1px solid var(--color-border);
 		}
@@ -161,19 +184,31 @@ export default class MeditationsSearch extends LitElement {
 			color: var(--color-text);
 			padding: 0 0.08em;
 		}
+
+		div[aria-live]:not(:empty) {
+			border-radius: 0 0 1.45rem 1.45rem;
+		}
 	`;
 
-	private queryText = "";
+	declare private queryText: string;
 
-	private results: PagefindResult[] = [];
+	declare private results: PagefindResult[];
 
-	private status: "idle" | "loading" | "empty" | "no-results" | "results" | "error" = "idle";
+	declare private status: "idle" | "loading" | "empty" | "no-results" | "results" | "error";
 
-	initialQuery = "";
+	declare initialQuery: string;
 
 	private debounceId: number | undefined;
 	private searchToken = 0;
 	private hasInitializedQuery = false;
+
+	constructor() {
+		super();
+		this.initialQuery = "";
+		this.queryText = "";
+		this.results = [];
+		this.status = "idle";
+	}
 
 	private get input(): HTMLInputElement | null {
 		return this.renderRoot.querySelector("input");
@@ -256,7 +291,7 @@ export default class MeditationsSearch extends LitElement {
 		}
 
 		if (this.status === "empty" || this.status === "idle") {
-			return html`<p>Enter a phrase to search the text.</p>`;
+			return html`<p data-empty>Enter a phrase to search the text.</p>`;
 		}
 
 		if (this.status === "no-results") {
