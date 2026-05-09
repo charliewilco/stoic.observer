@@ -8,15 +8,19 @@
 		"build": "astro build",
 		"postbuild": "pagefind --site dist",
 		"preview": "astro preview",
-		"parse": "tsx scripts/parse-gutenberg.ts"
+		"parse": "tsx scripts/parse-gutenberg.ts",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
 	},
 	"dependencies": {
-		"@astrojs/lit": "^4.3.0",
 		"astro": "^6.3.0",
 		"lit": "^3.3.2"
 	},
 	"devDependencies": {
+		"@types/node": "latest",
 		"pagefind": "^1.5.2",
+		"prettier": "^3.8.3",
+		"prettier-plugin-astro": "^0.14.1",
 		"tsx": "^4.21.0",
 		"typescript": "^6.0.3"
 	}
