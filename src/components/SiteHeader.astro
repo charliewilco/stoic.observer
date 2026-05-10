@@ -1,29 +1,98 @@
 ---
+import Wreath from "./Laurel.svg";
 const initialSearchQuery = Astro.url.pathname.startsWith("/search/")
 	? (Astro.url.searchParams.get("q") ?? undefined)
 	: undefined;
 ---
 
 <header class="site-header">
-	<a class="site-title" href="/">stoic.observer</a>
+	<div>
+		<a class="site-title" href="/">
+			<Wreath width={64} height={56} />
+			<h1 class="visually-hidden">stoic.observer</h1>
+		</a>
 
-	<div class="header-search">
-		<meditations-search initial-query={initialSearchQuery}>
-			<form class="search-fallback" action="/search" method="get" role="search">
-				<label class="visually-hidden" for="stoic-search-fallback">Search the Stoic canon</label>
-				<input
-					id="stoic-search-fallback"
-					name="q"
-					type="search"
-					autocomplete="off"
-					value={initialSearchQuery}
-					placeholder="Search the Stoic canon"
-				/>
-			</form>
-		</meditations-search>
+		<div class="header-search">
+			<meditations-search initial-query={initialSearchQuery}>
+				<form class="search-fallback" action="/search" method="get" role="search">
+					<label class="visually-hidden" for="stoic-search-fallback">Search the Stoic canon</label>
+					<input
+						id="stoic-search-fallback"
+						name="q"
+						type="search"
+						autocomplete="off"
+						value={initialSearchQuery}
+						placeholder="Search the Stoic canon"
+					/>
+				</form>
+			</meditations-search>
+		</div>
 	</div>
 </header>
 
 <script>
 	import "./MeditationsSearchElement";
 </script>
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+
+		min-height: 5.1rem;
+		padding: 1rem 3.25rem 0.85rem;
+		width: 100%;
+		background: linear-gradient(
+			to bottom,
+			color-mix(in srgb, var(--color-background) 96%, transparent) 0%,
+			color-mix(in srgb, var(--color-background) 86%, transparent) 70%,
+			transparent 100%
+		);
+	}
+
+	.site-header > div {
+		max-width: 48rem;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+		gap: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	a:first-of-type {
+		flex: 0;
+	}
+
+	meditations-search {
+		display: block;
+		flex: 1;
+		color: var(--color-text);
+		font-family: var(--font-sans);
+	}
+
+	.header-search {
+		width: 100%;
+	}
+
+	.site-title {
+		font-family: var(--font-serif);
+		font-size: 0.75rem;
+		font-weight: 700;
+		line-height: 1;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+
+	.site-title:hover {
+		color: var(--color-text);
+	}
+
+	@media (max-width: 860px) {
+		.site-header {
+			min-height: 4.8rem;
+			padding: 0.85rem 1rem 0.7rem;
+		}
+	}
+</style>

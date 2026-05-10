@@ -11,9 +11,6 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const initialSearchQuery = Astro.url.pathname.startsWith("/search/")
-	? (Astro.url.searchParams.get("q") ?? undefined)
-	: undefined;
 ---
 
 <!doctype html>
@@ -22,10 +19,12 @@ const initialSearchQuery = Astro.url.pathname.startsWith("/search/")
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
 		<div class="app-shell">
+			<SiteHeader />
 			<div class="content-shell">
-				<SiteHeader />
 				<main id="main">
-					<SideNavigation />
+					<aside>
+						<SideNavigation />
+					</aside>
 					<slot />
 				</main>
 				<SiteFooter />
@@ -33,3 +32,34 @@ const initialSearchQuery = Astro.url.pathname.startsWith("/search/")
 		</div>
 	</body>
 </html>
+
+<style>
+	.content-shell {
+	}
+
+	.app-shell {
+		min-height: 100vh;
+	}
+
+	.content-shell::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	aside {
+		float: left;
+		margin-left: calc(var(--sidebar-width) * -1);
+	}
+
+	main {
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 3rem;
+	}
+
+	main,
+	.site-footer {
+		width: 48rem;
+	}
+</style>

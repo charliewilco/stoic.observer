@@ -31,17 +31,15 @@ function isAuthorWorkPath(author: AuthorSlug, pathname: string): boolean {
 }
 ---
 
-<aside class="site-sidebar">
-	<nav aria-label="Primary navigation" class="site-nav">
-		{
-			navItems.map((item) => (
-				<a href={item.href} aria-current={isCurrentItem(item) ? "page" : undefined}>
-					{item.label}
-				</a>
-			))
-		}
-	</nav>
-</aside>
+<nav aria-label="Primary navigation" class="site-nav">
+	{
+		navItems.map((item) => (
+			<a href={item.href} aria-current={isCurrentItem(item) ? "page" : undefined}>
+				{item.label}
+			</a>
+		))
+	}
+</nav>
 
 <style>
 	.site-nav {

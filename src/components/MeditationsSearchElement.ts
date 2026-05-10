@@ -46,6 +46,7 @@ export default class MeditationsSearch extends LitElement {
 		form {
 			position: relative;
 			display: grid;
+			width: 100%;
 			gap: 0;
 			overflow: hidden;
 			border: 1px solid color-mix(in srgb, var(--color-border-strong) 72%, transparent);
